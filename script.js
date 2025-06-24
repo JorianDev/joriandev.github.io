@@ -1,3 +1,41 @@
+const zetelData = {
+    tk2023: [
+        { naam: "PVV", zetels: 37, kleur: "#1E90FF"},
+        { naam: "GroenLinks/PvdA", zetels: 25, kleur: "#ff0000"},
+        { naam: "VVD", zetels: 24, kleur: "#ff6400"},
+        { naam: "NSC", zetels: 20, kleur: "#143272"},
+        { naam: "CDA", zetels: 5, kleur: "#2cc84d"},
+        { naam: "D66", zetels: 9, kleur: "#00ae41"},
+        { naam: "JA21", zetels: 1, kleur: "#242b57"},
+        { naam: "SP", zetels: 5, kleur: "#ec1b23"},
+        { naam: "FVD", zetels: 3, kleur: "#84171a"},
+        { naam: "PvdDieren", zetels: 3, kleur: "#00621e"},
+        { naam: "SGP", zetels: 3, kleur: "#e95d0f"},
+        { naam: "DENK", zetels: 3, kleur: "#00b7b3"},
+        { naam: "Volt", zetels: 2, kleur: "#502378"},
+        { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
+        { naam: "BBB", zetels: 7, kleur: "#93c01f"},
+    ],
+
+    peilingMDH_Juni: [
+        { naam: "PVV", zetels: 30, kleur: "#1E90FF"},
+        { naam: "GroenLinks/PvdA", zetels: 29, kleur: "#ff0000"},
+        { naam: "VVD", zetels: 22, kleur: "#ff6400"},
+        { naam: "NSC", zetels: 0, kleur: "#143272"},
+        { naam: "CDA", zetels: 21, kleur: "#2cc84d"},
+        { naam: "D66", zetels: 8, kleur: "#00ae41"},
+        { naam: "JA21", zetels: 8, kleur: "#242b57"},
+        { naam: "SP", zetels: 7, kleur: "#ec1b23"},
+        { naam: "FVD", zetels: 4, kleur: "#84171a"},
+        { naam: "PvdDieren", zetels: 4, kleur: "#00621e"},
+        { naam: "SGP", zetels: 4, kleur: "#e95d0f"},
+        { naam: "DENK", zetels: 4, kleur: "#00b7b3"},
+        { naam: "Volt", zetels: 3, kleur: "#502378"},
+        { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
+        { naam: "BBB", zetels: 3, kleur: "#93c01f"},
+    ]
+};
+
 const partijen23 = [
     { naam: "PVV", zetels: 37, kleur: "#1E90FF"},
     { naam: "GroenLinks/PvdA", zetels: 25, kleur: "#ff0000"},
@@ -17,19 +55,55 @@ const partijen23 = [
 ];
 
 const meerderheid = 76;
+let partijen = zetelData.tk2023;
 let gekozenPartijen = [];
 
 const container = document.getElementById("partijenContainer");
 const zetelTeller = document.getElementById("zetelTeller");
 const statusLabel = document.getElementById("statusLabel");
+const datasetSelect = document.getElementById("zetelDataset");
+const resetBtn = document.getElementById("resetBtn");
 
-partijen23.forEach(partij => {
+partijen.forEach(partij => {
     const div = document.createElement("div");
     div.classList.add("partij");
     div.textContent = `${partij.naam} (${partij.zetels})`;
     div.addEventListener("click", () => togglePartij(partij, div));
     container.appendChild(div);
 });
+
+function laadPartijen() {
+  container.innerHTML = "";
+  gekozenPartijen = [];
+
+  partijen.forEach(partij => {
+    const div = document.createElement("div");
+    div.classList.add("partij");
+    div.textContent = `${partij.naam} (${partij.zetels})`;
+    div.addEventListener("click", () => togglePartij(partij, div));
+    container.appendChild(div);
+  });
+
+  updateZetels();
+}
+
+datasetSelect.addEventListener("change", () => {
+  const gekozen = datasetSelect.value;
+  partijen = zetelData[gekozen];
+  laadPartijen();
+});
+
+resetBtn.addEventListener("click", () => {
+  gekozenPartijen = [];
+
+  // Verwijder selectie uit UI
+  document.querySelectorAll(".partij").forEach(div => {
+    div.classList.remove("selected");
+  });
+
+  updateZetels();
+});
+
 
 function togglePartij(partij, element) {
     const index = gekozenPartijen.indexOf(partij);

@@ -8,16 +8,26 @@
 </head>
 <body>
   <header>
-    <h1>Bekijk zetelpeiling en probeer coalities te maken. Je kunt later ook zelf zetels aanpassen.</h1>
+    <h1>Politiek</h1>
   </header>
 
   <main>
     <section>
-      <button>Politiek</button>
       <p>Bekijk zetelverdeling en probeer coalities te maken. Je hebt ook de optie om zelf zetels aan te passen en te proberen.</p>
     </section>
   </main>
 
+  <div class="partijen-container" id="partijenContainer">
+    <!--JS voegt hier de partijen met zetels toe-->
+  </div>
+  <div id="zetels-display">
+    Aantal zetels: <span id="zetelTeller">0</span> / <!--Variabel zetelaantal-->
+    <span id="doel">76</span> <br>
+    <span id="statusLabel" class="geen-meerderheid">Geen meerderheid</span>
+  </div>
+
+
+  <script src="script.js"></script>
   <footer>
     <p>© 2025 JorianDev</p>
   </footer>

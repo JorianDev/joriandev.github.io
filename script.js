@@ -1,19 +1,19 @@
 const partijen23 = [
-    { naam: "PVV", zetels: 37},
-    { naam: "GroenLinks/PvdA", zetels: 25},
-    { naam: "VVD", zetels: 24},
-    { naam: "NSC", zetels: 20},
-    { naam: "CDA", zetels: 5},
-    { naam: "D66", zetels: 9},
-    { naam: "JA21", zetels: 1},
-    { naam: "SP", zetels: 5},
-    { naam: "FVD", zetels: 3},
-    { naam: "PvdDieren", zetels: 3},
-    { naam: "SGP", zetels: 3},
-    { naam: "DENK", zetels: 3},
-    { naam: "Volt", zetels: 2},
-    { naam: "ChristenUnie", zetels: 3},
-    { naam: "BBB", zetels: 7},
+    { naam: "PVV", zetels: 37, kleur: "#1E90FF"},
+    { naam: "GroenLinks/PvdA", zetels: 25, kleur: "#ff0000"},
+    { naam: "VVD", zetels: 24, kleur: "#ff6400"},
+    { naam: "NSC", zetels: 20, kleur: "#143272"},
+    { naam: "CDA", zetels: 5, kleur: "#2cc84d"},
+    { naam: "D66", zetels: 9, kleur: "#00ae41"},
+    { naam: "JA21", zetels: 1, kleur: "#242b57"},
+    { naam: "SP", zetels: 5, kleur: "#ec1b23"},
+    { naam: "FVD", zetels: 3, kleur: "#84171a"},
+    { naam: "PvdDieren", zetels: 3, kleur: "#00621e"},
+    { naam: "SGP", zetels: 3, kleur: "#e95d0f"},
+    { naam: "DENK", zetels: 3, kleur: "#00b7b3"},
+    { naam: "Volt", zetels: 2, kleur: "#502378"},
+    { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
+    { naam: "BBB", zetels: 7, kleur: "#93c01f"},
 ];
 
 const meerderheid = 76;
@@ -53,4 +53,56 @@ function updateZetels() {
         statusLabel.textContent = "Geen meerderheid"
         statusLabel.className = "geen-meerderheid";
     }
+
+    tekenKamer();
 }
+
+function tekenKamer() {
+    const canvas = document.getElementById("kamerCanvas");
+    const ctx = canvas.getContext("2d");
+    const totaalZetels = gekozenPartijen.reduce((sum, partij) => sum + partij.zetels, 0);
+    const straal = 200;
+    const middenX = canvas.width / 2;
+    const middenY = canvas.height;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    let huidigeHoek = Math.PI;
+    const hoekPerZetel = Math.PI / 150; // max 150 zetels (ruimte verdeling)
+
+    // Teken geselecteerde partijen in volgorde van klik
+    gekozenPartijen.forEach(partij => {
+        for (let i = 0; i < partij.zetels; i++) {
+            const startHoek = huidigeHoek;
+            const eindHoek = huidigeHoek + hoekPerZetel;
+
+            ctx.beginPath();
+            ctx.moveTo(middenX, middenY);
+            ctx.arc(middenX, middenY, straal, startHoek, eindHoek);
+            ctx.closePath();
+            ctx.fillStyle = partij.kleur;
+            ctx.fill();
+
+            huidigeHoek = eindHoek;
+        }
+    });
+
+    // Teken lege zetels tot aan 150
+    const resterend = 150 - totaalZetels;
+    for (let i = 0; i < resterend; i++) {
+        const startHoek = huidigeHoek;
+        const eindHoek = huidigeHoek + hoekPerZetel;
+
+        ctx.beginPath();
+        ctx.moveTo(middenX, middenY);
+        ctx.arc(middenX, middenY, straal, startHoek, eindHoek);
+        ctx.closePath();
+        ctx.fillStyle = "#ddd";
+        ctx.fill();
+
+        huidigeHoek = eindHoek;
+    }
+}
+
+
+tekenKamer();

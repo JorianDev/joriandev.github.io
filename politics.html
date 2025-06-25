@@ -20,7 +20,8 @@
   <div id="options">
     <label for="zetelDataset">Kies jaar/peiling</label>
     <select id="zetelDataset">
-        <option value="TK23">Tweede Kamer 2023</option>
+        <!--values moeten overeenkomen met javascript values-->
+        <option value="tk2023">Tweede Kamer 2023</option>
         <option value="peilingMDH_Juni">Peiling MDH - 21 juni 2025</option>
     </select>
     <button id="resetBtn">Reset</button>
@@ -36,6 +37,11 @@
   </div>
 
   <canvas id="kamerCanvas" width="500" height="500"></canvas>
+
+  <!--Gebruiker moet hier een eigen zetelverdeling kunnen maken-->
+  <h2>Eigen verdeling</h2>
+  <div id="bewerk-container"></div>
+  <button id="opslaanZetels">Download afbeelding</button>
 
 
   <script src="script.js"></script>

@@ -72,3 +72,26 @@ footer {
   text-align: center;
   padding: 1rem;
 }
+
+
+#bewerk-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.bewerk-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #f9f9f9;
+  width: 130px;
+}
+.bewerk-item input {
+  width: 50px;
+  text-align: center;
+}
+

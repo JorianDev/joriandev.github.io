@@ -1,3 +1,4 @@
+// Datasets
 const zetelData = {
     tk2023: [
         { naam: "PVV", zetels: 37, kleur: "#1E90FF"},
@@ -33,66 +34,113 @@ const zetelData = {
         { naam: "Volt", zetels: 3, kleur: "#502378"},
         { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
         { naam: "BBB", zetels: 3, kleur: "#93c01f"},
-    ]
+    ],
+
+    eigenVerdeling: [
+        { naam: "PVV", zetels: 37, kleur: "#1E90FF"},
+        { naam: "GroenLinks/PvdA", zetels: 25, kleur: "#ff0000"},
+        { naam: "VVD", zetels: 24, kleur: "#ff6400"},
+        { naam: "NSC", zetels: 20, kleur: "#143272"},
+        { naam: "CDA", zetels: 5, kleur: "#2cc84d"},
+        { naam: "D66", zetels: 9, kleur: "#00ae41"},
+        { naam: "JA21", zetels: 1, kleur: "#242b57"},
+        { naam: "SP", zetels: 5, kleur: "#ec1b23"},
+        { naam: "FVD", zetels: 3, kleur: "#84171a"},
+        { naam: "PvdDieren", zetels: 3, kleur: "#00621e"},
+        { naam: "SGP", zetels: 3, kleur: "#e95d0f"},
+        { naam: "DENK", zetels: 3, kleur: "#00b7b3"},
+        { naam: "Volt", zetels: 2, kleur: "#502378"},
+        { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
+        { naam: "BBB", zetels: 7, kleur: "#93c01f"},
+    ],
 };
 
-const partijen23 = [
-    { naam: "PVV", zetels: 37, kleur: "#1E90FF"},
-    { naam: "GroenLinks/PvdA", zetels: 25, kleur: "#ff0000"},
-    { naam: "VVD", zetels: 24, kleur: "#ff6400"},
-    { naam: "NSC", zetels: 20, kleur: "#143272"},
-    { naam: "CDA", zetels: 5, kleur: "#2cc84d"},
-    { naam: "D66", zetels: 9, kleur: "#00ae41"},
-    { naam: "JA21", zetels: 1, kleur: "#242b57"},
-    { naam: "SP", zetels: 5, kleur: "#ec1b23"},
-    { naam: "FVD", zetels: 3, kleur: "#84171a"},
-    { naam: "PvdDieren", zetels: 3, kleur: "#00621e"},
-    { naam: "SGP", zetels: 3, kleur: "#e95d0f"},
-    { naam: "DENK", zetels: 3, kleur: "#00b7b3"},
-    { naam: "Volt", zetels: 2, kleur: "#502378"},
-    { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
-    { naam: "BBB", zetels: 7, kleur: "#93c01f"},
-];
 
-const meerderheid = 76;
+// Variables
 let partijen = zetelData.tk2023;
 let gekozenPartijen = [];
 
+const meerderheid = 76;
 const container = document.getElementById("partijenContainer");
 const zetelTeller = document.getElementById("zetelTeller");
 const statusLabel = document.getElementById("statusLabel");
 const datasetSelect = document.getElementById("zetelDataset");
 const resetBtn = document.getElementById("resetBtn");
+const eigenVerdelingSelectie = document.getElementById("eigenVerdelingSelectie");
 
-partijen.forEach(partij => {
-    const div = document.createElement("div");
-    div.classList.add("partij");
-    div.textContent = `${partij.naam} (${partij.zetels})`;
-    div.addEventListener("click", () => togglePartij(partij, div));
-    container.appendChild(div);
-});
-
+// Functions
 function laadPartijen() {
   container.innerHTML = "";
+  const bewerkContainer = document.getElementById("bewerk-container");
+  bewerkContainer.innerHTML = "";
+
   gekozenPartijen = [];
 
   partijen.forEach(partij => {
+    // Zetelknop
     const div = document.createElement("div");
     div.classList.add("partij");
     div.textContent = `${partij.naam} (${partij.zetels})`;
     div.addEventListener("click", () => togglePartij(partij, div));
     container.appendChild(div);
+
+    // Invoer velden
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("bewerk-item");
+    wrapper.innerHTML = `
+      <div><strong>${partij.naam}</strong></div>
+      <label>Zetels: <input type="number" min="0" value="${partij.zetels}" data-partij="${partij.naam}"></label>
+    `;
+
+    bewerkContainer.appendChild(wrapper);
   });
+
+  if (datasetSelect.value === "eigenVerdeling") {
+    eigenVerdelingSelectie.style.display = "block";
+  } else {
+    eigenVerdelingSelectie.style.display = "none";
+  }
 
   updateZetels();
 }
 
-datasetSelect.addEventListener("change", () => {
-  const gekozen = datasetSelect.value;
-  partijen = zetelData[gekozen];
-  laadPartijen();
+document.getElementById("opslaanZetels").addEventListener("click", () => {
+  const inputs = document.querySelectorAll('#bewerk-container input');
+
+  inputs.forEach(input => {
+    const partijNaam = input.dataset.partij;
+    const nieuweWaarde = parseInt(input.value);
+
+    const partij = partijen.find(p => p.naam === partijNaam);
+    if (partij && !isNaN(nieuweWaarde)) {
+      partij.zetels = nieuweWaarde;
+    }
+  });
+
+  updateZetels(); // UI herladen'
+
+  const canvas = document.getElementById("kamerCanvas");
+  const link = document.createElement("a");
+  link.download = "zetelverdeling.png";
+  link.href = canvas.toDataURL("image/png");
+  link.click();
 });
 
+
+// Als gebruiker andere dataset kiest
+datasetSelect.addEventListener("change", () => {
+  const gekozen = datasetSelect.value;
+  partijen = zetelData[gekozen].map(p => ({ ...p})); // veilige deep copy
+  laadPartijen();
+
+  if (gekozen === "eigenVerdeling") {
+    eigenVerdelingSelectie.style.display = "block";
+  } else {
+    eigenVerdelingSelectie.style.display = "none";
+  }
+});
+
+// Resetknop geklikt
 resetBtn.addEventListener("click", () => {
   gekozenPartijen = [];
 
@@ -104,7 +152,7 @@ resetBtn.addEventListener("click", () => {
   updateZetels();
 });
 
-
+// Partij knop gedrukt
 function togglePartij(partij, element) {
     const index = gekozenPartijen.indexOf(partij);
     if (index === -1) {
@@ -117,6 +165,7 @@ function togglePartij(partij, element) {
     updateZetels();
 }
 
+// Zetels tellen en meerderheid checken
 function updateZetels() {
     const totaal = gekozenPartijen.reduce((sum, partij) => sum + partij.zetels, 0);
     zetelTeller.textContent = totaal;
@@ -131,6 +180,7 @@ function updateZetels() {
     tekenKamer();
 }
 
+// Kamer tekenen
 function tekenKamer() {
     const canvas = document.getElementById("kamerCanvas");
     const ctx = canvas.getContext("2d");
@@ -178,5 +228,26 @@ function tekenKamer() {
     }
 }
 
+// Door gebruiker aangepaste verdeling
+document.getElementById("gebruikAangepasteVerdeling").addEventListener("click", () => {
+  const inputs = document.querySelectorAll('#bewerk-container input');
 
-tekenKamer();
+  // Zetels bijwerken
+  inputs.forEach(input => {
+    const partijNaam = input.dataset.partij;
+    const nieuweWaarde = parseInt(input.value);
+    const partij = partijen.find(p => p.naam === partijNaam);
+    if (partij && !isNaN(nieuweWaarde)) {
+      partij.zetels = nieuweWaarde;
+    }
+  });
+
+  // Reset selectie (want zetels kunnen gewijzigd zijn)
+  gekozenPartijen = [];
+
+  // UI updaten (zetelblokken opnieuw tekenen met nieuwe aantallen)
+  laadPartijen();
+});
+
+
+laadPartijen();

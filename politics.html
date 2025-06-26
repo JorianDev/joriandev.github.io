@@ -20,8 +20,10 @@
   <div id="options">
     <label for="zetelDataset">Kies jaar/peiling</label>
     <select id="zetelDataset">
-        <option value="TK23">Tweede Kamer 2023</option>
+        <!--values moeten overeenkomen met javascript values-->
+        <option value="tk2023">Tweede Kamer 2023</option>
         <option value="peilingMDH_Juni">Peiling MDH - 21 juni 2025</option>
+        <option value="eigenVerdeling">Maak eigen verdeling</option>
     </select>
     <button id="resetBtn">Reset</button>
   </div>
@@ -29,18 +31,28 @@
   <div class="partijen-container" id="partijenContainer">
     <!--JS voegt hier de partijen met zetels toe-->
   </div>
+
+  <!-- Textlabel met hoeveel zetels geselecteerd -->
   <div id="zetels-display">
     Aantal zetels: <span id="zetelTeller">0</span> / <!--Variabel zetelaantal-->
     <span id="doel">76</span> <br>
     <span id="statusLabel" class="geen-meerderheid">Geen meerderheid</span>
   </div>
 
-  <canvas id="kamerCanvas" width="500" height="500"></canvas>
+  <canvas id="kamerCanvas" width="500" height="300"></canvas><br>
+  <button id="opslaanZetels">Download afbeelding</button>
 
 
-  <script src="script.js"></script>
+  <!-- Gebruiker moet hier een eigen zetelverdeling kunnen maken -->
+  <div id="eigenVerdelingSelectie" style = "display: none;">
+    <h2>Eigen verdeling</h2>
+    <div id="bewerk-container"></div>
+    <button id="gebruikAangepasteVerdeling">Gebruik eigen verdeling</button>
+  </div>
+
   <footer>
     <p>© 2025 JorianDev</p>
   </footer>
+  <script src="script.js"></script>
 </body>
 </html>

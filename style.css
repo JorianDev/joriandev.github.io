@@ -1,3 +1,8 @@
+/* 
+# for div id
+. for div class
+*/
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -95,3 +100,23 @@ footer {
   text-align: center;
 }
 
+#grafiek-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+/* Responsieve layout: bij smalle schermen onder elkaar */
+@media (max-width: 768px) {
+  #grafiek-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #grafiek-container canvas {
+    max-width: 100%;
+    height: auto;
+  }
+}

@@ -61,6 +61,7 @@ let partijen = zetelData.tk2023;
 let gekozenPartijen = [];
 
 const meerderheid = 76;
+const maxAantalZetels = 150;
 const container = document.getElementById("partijenContainer");
 const zetelTeller = document.getElementById("zetelTeller");
 const statusLabel = document.getElementById("statusLabel");
@@ -101,6 +102,7 @@ function laadPartijen() {
     eigenVerdelingSelectie.style.display = "none";
   }
 
+  tekenVergelijkingChart();
   updateZetels();
 }
 
@@ -138,6 +140,9 @@ datasetSelect.addEventListener("change", () => {
   } else {
     eigenVerdelingSelectie.style.display = "none";
   }
+
+  tekenVergelijkingChart();
+
 });
 
 // Resetknop geklikt
@@ -231,23 +236,99 @@ function tekenKamer() {
 // Door gebruiker aangepaste verdeling
 document.getElementById("gebruikAangepasteVerdeling").addEventListener("click", () => {
   const inputs = document.querySelectorAll('#bewerk-container input');
+  let totaal = 0;
+  const nieuweVerdeling = [];
 
   // Zetels bijwerken
   inputs.forEach(input => {
     const partijNaam = input.dataset.partij;
-    const nieuweWaarde = parseInt(input.value);
-    const partij = partijen.find(p => p.naam === partijNaam);
-    if (partij && !isNaN(nieuweWaarde)) {
-      partij.zetels = nieuweWaarde;
+    const waarde = parseInt(input.value, 10);
+
+    if (!isNaN(waarde) && waarde >= 0) {
+      totaal += waarde;
+      nieuweVerdeling.push({ naam: partijNaam, zetels: waarde});
     }
   });
 
-  // Reset selectie (want zetels kunnen gewijzigd zijn)
-  gekozenPartijen = [];
+  if (totaal != 150) {
+    alert(`Het totaal aantal zetels moet 150 zijn. Je hebt nu ${totaal} zetels.`);
+    return;
+  }
 
-  // UI updaten (zetelblokken opnieuw tekenen met nieuwe aantallen)
+  nieuweVerdeling.forEach(nieuw => {
+    const partij = partijen.find(p => p.naam === nieuw.naam);
+    if (partij) {
+      partij.zetels = nieuw.zetels;
+    }
+  });
+
+  gekozenPartijen = [];
   laadPartijen();
 });
+
+
+// Staafdiagram
+
+let vergelijkingChart = null;
+
+function tekenVergelijkingChart() {
+  const gekozen = datasetSelect.value;
+  if (gekozen === "eigenVerdeling") return; // Geen vergelijking mogelijk
+
+  const huidige = zetelData.tk2023;
+  const peiling = zetelData[gekozen];
+
+  const partijenNamen = huidige.map(p => p.naam);
+  const kleuren = huidige.map(p => p.kleur);
+  const huidigeZetels = partijenNamen.map(naam => {
+    const partij = huidige.find(p => p.naam === naam);
+    return partij ? partij.zetels : 0;
+  });
+
+  const peilingZetels = partijenNamen.map(naam => {
+    const partij = peiling.find(p => p.naam === naam);
+    return partij ? partij.zetels : 0;
+  });
+
+  const ctx = document.getElementById("vergelijkingChart").getContext("2d");
+
+  if (vergelijkingChart) vergelijkingChart.destroy(); // voorkom dubbele charts
+
+  vergelijkingChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: partijenNamen,
+      datasets: [
+        {
+          label: 'Uitslag TK 2023',
+          data: huidigeZetels,
+          backgroundColor: kleuren,
+        },
+        {
+          label: `Peiling (${gekozen})`,
+          data: peilingZetels,
+          backgroundColor: kleuren.map(k => k + "66"), // transparanter
+        }
+      ]
+    },
+    options: {
+      responsive: false,
+      plugins: {
+        legend: { position: 'top' },
+        title: {
+          display: true,
+          text: 'Vergelijking tussen uitslag en peiling'
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 50
+        }
+      }
+    }
+  });
+}
 
 
 laadPartijen();

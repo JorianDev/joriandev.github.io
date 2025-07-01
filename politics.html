@@ -39,8 +39,19 @@
     <span id="statusLabel" class="geen-meerderheid">Geen meerderheid</span>
   </div>
 
-  <canvas id="kamerCanvas" width="500" height="300"></canvas><br>
-  <button id="opslaanZetels">Download afbeelding</button>
+  <div id="grafiek-container">
+    <div>
+      <canvas id="kamerCanvas" width="450" height="300"></canvas><br>
+      <button id="opslaanZetels">Download afbeelding</button>
+    </div>
+    <div>
+      <h2>Vergelijking met peiling</h2>
+      <canvas id="vergelijkingChart" width="500" height="300"></canvas>
+    </div>
+  </div>
+
+
+
 
 
   <!-- Gebruiker moet hier een eigen zetelverdeling kunnen maken -->
@@ -53,6 +64,7 @@
   <footer>
     <p>© 2025 JorianDev</p>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

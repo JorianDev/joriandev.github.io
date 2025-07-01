@@ -106,27 +106,71 @@ function laadPartijen() {
   updateZetels();
 }
 
-document.getElementById("opslaanZetels").addEventListener("click", () => {
-  const inputs = document.querySelectorAll('#bewerk-container input');
+document.getElementById("opslaanZetels").addEventListener("click", downloadMetLegenda);
 
-  inputs.forEach(input => {
-    const partijNaam = input.dataset.partij;
-    const nieuweWaarde = parseInt(input.value);
+function downloadMetLegenda() {
+  const sourceCanvas = document.getElementById("kamerCanvas");
+  const legendPadding = 20;
+  const lineHeight = 20;
+  const legendWidth = 230;
+  const legendHeight = legendPadding + (gekozenPartijen.length + 2) * lineHeight;
 
-    const partij = partijen.find(p => p.naam === partijNaam);
-    if (partij && !isNaN(nieuweWaarde)) {
-      partij.zetels = nieuweWaarde;
-    }
+  //Breder en indien nodig hoger canvas maken
+  const outCanvas = document.createElement("canvas");
+  outCanvas.width = sourceCanvas.width + legendWidth;
+  outCanvas.height = Math.max(sourceCanvas.height, legendHeight);
+  const ctxOut = outCanvas.getContext("2d");
+
+  // Witte achtergrond
+  ctxOut.fillStyle = "#fff";
+  ctxOut.fillRect(0,0, outCanvas.width, outCanvas.height);
+
+  // Halve cirkel
+  ctxOut.drawImage(sourceCanvas, 0, 0);
+
+  // Legenda
+  ctxOut.font = "15px sans-serif";
+  ctxOut.fillStyle = "#000";
+  ctxOut.fillText("Legenda", sourceCanvas.width + 10, legendPadding);
+
+  gekozenPartijen.forEach((partij, i) => {
+    const y = legendPadding + (i + 2) * lineHeight;
+
+    ctxOut.fillStyle = partij.kleur;
+    ctxOut.fillRect(sourceCanvas.width + 10, y - 12, 14, 14);
+
+    ctxOut.fillStyle = "#000";
+    ctxOut.fillText(`${partij.naam} (${partij.zetels})`, sourceCanvas.width + 30, y);
+
   });
 
-  updateZetels(); // UI herladen'
-
-  const canvas = document.getElementById("kamerCanvas");
   const link = document.createElement("a");
-  link.download = "zetelverdeling.png";
-  link.href = canvas.toDataURL("image/png");
+  link.download = "zetelverdeling.png"
+  link.href = outCanvas.toDataURL("image/png");
   link.click();
-});
+}
+
+// document.getElementById("opslaanZetels").addEventListener("click", () => {
+//   const inputs = document.querySelectorAll('#bewerk-container input');
+
+//   inputs.forEach(input => {
+//     const partijNaam = input.dataset.partij;
+//     const nieuweWaarde = parseInt(input.value);
+
+//     const partij = partijen.find(p => p.naam === partijNaam);
+//     if (partij && !isNaN(nieuweWaarde)) {
+//       partij.zetels = nieuweWaarde;
+//     }
+//   });
+
+//   updateZetels(); // UI herladen'
+
+//   const canvas = document.getElementById("kamerCanvas");
+//   const link = document.createElement("a");
+//   link.download = "zetelverdeling.png";
+//   link.href = canvas.toDataURL("image/png");
+//   link.click();
+// });
 
 
 // Als gebruiker andere dataset kiest

@@ -123,10 +123,15 @@ let vergelijkingChart = null;
 
 function tekenVergelijkingChart() {
   const gekozen = datasetSelect.value;
-  if (gekozen === "eigenVerdeling") return; // Geen vergelijking mogelijk
-
   const huidige = zetelData.tk2023;
-  const peiling = zetelData[gekozen];
+
+  let peiling;
+
+  if (gekozen === "eigenVerdeling") {
+    peiling = partijen;
+  } else {
+    peiling = zetelData[gekozen];
+  }
 
   const partijenNamen = huidige.map(p => p.naam);
   const kleuren = huidige.map(p => p.kleur);
@@ -155,7 +160,8 @@ function tekenVergelijkingChart() {
           backgroundColor: kleuren,
         },
         {
-          label: `Peiling (${gekozen})`,
+          label: gekozen === "eigenVerdeling" ? 'Eigen verdeling' : `Peiling (${gekozen})`,
+          //label: `Peiling (${gekozen})`,
           data: peilingZetels,
           backgroundColor: kleuren.map(k => k + "66"), // transparanter
         }

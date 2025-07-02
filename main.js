@@ -12,6 +12,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const opslaanBtn = document.getElementById("opslaanZetels");
   const gebruikAangepasteBtn = document.getElementById("gebruikAangepasteVerdeling");
 
+
+  // Check localStorage
+  const opgeslagenVerdeling = localStorage.getItem('eigenVerdeling');
+  if (opgeslagenVerdeling) {
+    try {
+      const verdelingArray = JSON.parse(opgeslagenVerdeling);
+      zetelData.eigenVerdeling.forEach(partij => {
+        const opgeslagenPartij = verdelingArray.find(p => p.naam === partij.naam);
+        if (opgeslagenPartij) {
+          partij.zetels = opgeslagenPartij.zetels;
+        }
+      });
+    } catch(e) {
+      console.error("Fout bij laden opgeslagen verdeling:", e);
+    }
+  } 
+
   // Initialisatie
   laadPartijen();
   tekenVergelijkingChart();
@@ -66,6 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const partij = partijen.find(p => p.naam === nieuw.naam);
       if (partij) partij.zetels = nieuw.zetels;
     });
+
+    localStorage.setItem('eigenVerdeling', JSON.stringify(nieuweVerdeling));
 
     gekozenPartijen = [];
     laadPartijen();

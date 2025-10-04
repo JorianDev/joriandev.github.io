@@ -9,15 +9,32 @@
   <script src="data.js" defer></script>
   <script src="logica.js" defer></script>
   <script src="main.js" defer></script>
+  <script src="maths.js" defer></script>
 </head>
+
 <body>
   <header>
     <h1>Politiek</h1>
+    <h2 id="countdown"></h2>
   </header>
 
   <main>
     <section>
-      <p>Bekijk zetelverdeling en probeer coalities te maken. Je hebt ook de optie om zelf zetels aan te passen en te proberen.</p>
+      <p><strong>Bekijk zetelverdeling en probeer coalities te maken. Je hebt ook de optie om zelf zetels aan te passen en te proberen.</strong></p>
+      <br>Welke peilingen zijn er?</strong>
+      <ul>
+        <li>
+          MDH = Maurice de Hond. Bekendste peiler van Nederland. Hij is vaak erg snel en heeft een groot aantal deelnemers, vaak verschillende duizenden.
+          Hierdoor heeft hij vaak meer deelnemers dan andere bekende peilingen.
+        </li>
+        <li>
+          EenVandaag. EenVandaag gebruikt peilingen van NIPObase in combinatie met een enquete bij de eigen opiniepanel leden.
+        </li>
+        <li>
+          Peilingwijzer. Peilingwijzer laat een gemiddelde zien van de belangrijkste peilingen. Ze kijken naar de peilingen van Ipsos I&O en EenVandaag.
+          Maurice de Hond doet niet mee, hij vindt Peilingwijzer te traag werken.
+        </li>
+      </ul>
     </section>
   </main>
 
@@ -26,7 +43,8 @@
     <select id="zetelDataset">
         <!--values moeten overeenkomen met javascript values-->
         <option value="tk2023">Tweede Kamer 2023</option>
-        <option value="peilingMDH_Aug">Peiling MDH - 26 Augustus 2025</option>
+        <option value="peilingEenV_Sept">Peiling EenVandaag - 30 September 2025</option>
+        <option value="peilingMDH_Sept">Peiling MDH - 26 September 2025</option>
         <option value="peilingMDH_Juni">Peiling MDH - 21 juni 2025</option>
         <option value="eigenVerdeling">Maak eigen verdeling</option>
     </select>

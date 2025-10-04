@@ -42,6 +42,10 @@ header {
     border-color: #007bff;
   }
 
+#options {
+  padding: 2rem;
+}
+
 #zetels-display {
     text-align: center;
     margin-top: 30px;

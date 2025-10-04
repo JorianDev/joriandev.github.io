@@ -20,6 +20,25 @@ const zetelData = {
         { naam: "50PLUS", zetels: 0, kleur: "#721fc0ff"},
     ],
 
+    peilingMDH_Okt: [
+        { naam: "PVV", zetels: 30, kleur: "#1E90FF"},
+        { naam: "GroenLinks/PvdA", zetels: 27, kleur: "#ff0000"},
+        { naam: "VVD", zetels: 13, kleur: "#ff6400"},
+        { naam: "NSC", zetels: 0, kleur: "#143272"},
+        { naam: "CDA", zetels: 23, kleur: "#2cc84d"},
+        { naam: "D66", zetels: 12, kleur: "#00ae41"},
+        { naam: "JA21", zetels: 13, kleur: "#242b57"},
+        { naam: "SP", zetels: 6, kleur: "#ec1b23"},
+        { naam: "FVD", zetels: 5, kleur: "#84171a"},
+        { naam: "PvdDieren", zetels: 3, kleur: "#00621e"},
+        { naam: "SGP", zetels: 3, kleur: "#e95d0f"},
+        { naam: "DENK", zetels: 4, kleur: "#00b7b3"},
+        { naam: "Volt", zetels: 3, kleur: "#502378"},
+        { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
+        { naam: "BBB", zetels: 4, kleur: "#93c01f"},
+        { naam: "50PLUS", zetels: 1, kleur: "#721fc0ff"},
+    ],
+
     peilingEenV_Sept: [
         { naam: "PVV", zetels: 34, kleur: "#1E90FF"},
         { naam: "GroenLinks/PvdA", zetels: 23, kleur: "#ff0000"},

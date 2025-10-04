@@ -12,6 +12,11 @@ body {
   color: #333;
 }
 
+a:link, a:visited, a:active {
+  text-decoration: underline;
+  color: black;
+}
+
 header {
   background-color: #1e6285;
   color: #fff;

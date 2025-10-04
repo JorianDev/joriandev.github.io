@@ -17,12 +17,13 @@ const zetelData = {
         { naam: "Volt", zetels: 2, kleur: "#502378"},
         { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
         { naam: "BBB", zetels: 7, kleur: "#93c01f"},
+        { naam: "50PLUS", zetels: 0, kleur: "#721fc0ff"},
     ],
 
     peilingMDH_Aug: [
         { naam: "PVV", zetels: 29, kleur: "#1E90FF"},
         { naam: "GroenLinks/PvdA", zetels: 27, kleur: "#ff0000"},
-        { naam: "VVD", zetels: 23, kleur: "#ff6400"},
+        { naam: "VVD", zetels: 15, kleur: "#ff6400"},
         { naam: "NSC", zetels: 0, kleur: "#143272"},
         { naam: "CDA", zetels: 23, kleur: "#2cc84d"},
         { naam: "D66", zetels: 11, kleur: "#00ae41"},
@@ -55,6 +56,7 @@ const zetelData = {
         { naam: "Volt", zetels: 3, kleur: "#502378"},
         { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
         { naam: "BBB", zetels: 3, kleur: "#93c01f"},
+        { naam: "50PLUS", zetels: 0, kleur: "#721fc0ff"},
     ],
 
     eigenVerdeling: [
@@ -73,5 +75,6 @@ const zetelData = {
         { naam: "Volt", zetels: 2, kleur: "#502378"},
         { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
         { naam: "BBB", zetels: 7, kleur: "#93c01f"},
+        { naam: "50PLUS", zetels: 0, kleur: "#721fc0ff"},
     ],
 };

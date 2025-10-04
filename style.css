@@ -47,8 +47,17 @@ header {
     border-color: #007bff;
   }
 
-#options, #eigenVerdelingLabel {
+#options {
   padding: 2rem;
+}
+
+#eigenVerdelingLabel {
+  padding-top: 2rem;
+  padding-left: 2rem;
+}
+
+#eigenVerdelingWaarschuwing {
+  padding-left: 2rem;
 }
 
 #zetels-display {

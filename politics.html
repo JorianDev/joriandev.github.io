@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Politiek - JorianDev</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="logo-website-github.png">
 
   <script src="data.js" defer></script>
   <script src="logica.js" defer></script>
@@ -21,7 +22,7 @@
   <main>
     <section>
       <p><strong>Bekijk zetelverdeling en probeer coalities te maken. Je hebt ook de optie om zelf zetels aan te passen en te proberen.</strong></p>
-      <br>Welke peilingen zijn er?</strong>
+      <br>Welke peilingen zijn er?
       <ul>
         <li>
           MDH = Maurice de Hond. Bekendste peiler van Nederland. Hij is vaak erg snel en heeft een groot aantal deelnemers, vaak verschillende duizenden.
@@ -37,11 +38,63 @@
           Maurice de Hond doet niet mee, hij vindt Peilingwijzer te traag werken.
         </li>
       </ul>
+
+      <p>
+        Gebruik van deze pagina.<br>
+        <ol type="1">
+          <li>
+            Kies allereerst een verkiezingsuitslag of peiling. Op dit moment is de verkiezingsuitslag van 2023 de standaardkeuze. <i>Zie de tekst
+            verder naar beneden voor uitleg van het maken van eigen zetelverdeling.</i>
+          </li>
+          <li>
+            Na een keuze gemaakt te hebben kan er op de knoppen met partijnamen hieronder geklikt worden. Door deze te selecteren worden
+            ze gebruikt in de zelfgemaakte coalitiezoeker.
+          </li>
+          <li>
+            Onder de knoppen staat het aantal geselecteerde zetels aangegeven. Wanneer dit
+            zetelaantal gelijk is aan 76 is er een meerderheid, en is er dus een coalitie mogelijk.
+          </li>
+          <li>
+            Onder de zetelverdeling is een knop met de tekst "Download afbeelding" te vinden. Klik hierop om een afbeelding te downloaden van
+            uw zelfgemaakte coalitie. In de afbeelding zijn de gekozen partijen met zetelaantal zichtbaar.
+          </li>
+        </ol>
+      </p>
+
+      <p>
+        <br>Gebruik eigen verdeling. <strong>Let op: er worden geen gegevens opgeslagen. <u>Wanneer deze pagina gesloten wordt, dan wordt alle data
+          op deze pagina gereset.</u>
+        </strong>
+        <ol type="1">
+          <li>
+            Kies hieronder voor de keuze 'Maak eigen verdeling'. De zetelverdeling hier is standaard de zetelverdeling van de laatste
+            verkiezingen.
+          </li>
+          <li>
+            Als u verder naar beneden scrollt ziet u de kop 'Eigen verdeling' staan. Daaronder kunt u zelf zetels aanpassen
+          </li>
+          <li>
+            Wanneer er een eigen verdeling is gemaakt, dan klikt u daaronder op de knop 'Gebruik eigen verdeling'. 
+          </li>
+          <li>
+            Als de verdeelde zetels samen niet 150 zijn, dan ziet u een foutmelding met het totaal aantal verdeelde zetels.
+            Verdeel deze zodat ze 150 zijn, daarna kunt u verder.
+          </li>
+          <li>
+            Wanneer de eigen zetelverdeling is gemaakt en u op de knop 'Gebruik eigen verdeling' is geklikt, dan worden de zetels
+            bij de knoppen geüpdated. Nu kunt u uw eigen coalitie kiezen door op de knoppen te klikken.
+          </li>
+          <li>
+            Wanneer u uw verdeling heeft gemaakt kunt u daaronder op de knop 'Download afbeelding' klikken. U download dan een afbeelding
+            van het halve cirkel-diagram. In de legenda staan dan de gekozen partijen met zetels van de partijen.
+          </li>
+        </ol>
+      </p>
     </section>
   </main>
 
   <div id="options">
-    <label for="zetelDataset">Kies jaar/peiling</label>
+    <label for="zetelDataset">Kies verkiezingsuitslag of peiling</label>
     <select id="zetelDataset">
         <!--values moeten overeenkomen met javascript values-->
         <option value="tk2023">Tweede Kamer 2023</option>
@@ -81,21 +134,18 @@
 
   <!-- Gebruiker moet hier een eigen zetelverdeling kunnen maken -->
   <div id="eigenVerdelingSelectie" style = "display: none;">
-    <h2>Eigen verdeling</h2>
+    <h2 id="eigenVerdelingLabel">Eigen verdeling</h2>
     <div id="bewerk-container"></div>
     <button id="gebruikAangepasteVerdeling">Gebruik eigen verdeling</button>
   </div>
 
-  <button>
+  <!-- <button>
     <a href="morestats.html">Meer statistieken</a>
-  </button>
+  </button> -->
 
   <footer>
     <p>© 2025 JorianDev</p>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- <script src="data.js"></script>
-  <script src="logica.js"></script>
-  <script src="main.js"></script> -->
 </body>
 </html>

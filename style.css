@@ -47,7 +47,7 @@ header {
     border-color: #007bff;
   }
 
-#options {
+#options, #eigenVerdelingLabel {
   padding: 2rem;
 }
 

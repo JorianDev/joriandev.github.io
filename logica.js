@@ -75,7 +75,7 @@ function tekenKamer() {
     const canvas = document.getElementById("kamerCanvas");
     const ctx = canvas.getContext("2d");
     const totaalZetels = gekozenPartijen.reduce((sum, partij) => sum + partij.zetels, 0);
-    const straal = 200;
+    const straal = 250;
     const middenX = canvas.width / 2;
     const middenY = canvas.height;
 

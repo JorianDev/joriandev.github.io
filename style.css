@@ -3,6 +3,13 @@
 . for div class
 */
 
+header {
+  background-color: #1e6285;
+  color: #fff;
+  padding: 2rem;
+  text-align: center;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -12,16 +19,24 @@ body {
   color: #333;
 }
 
+button {
+  color: white;
+  background-color: #007bff;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  font-family: 'Arial', sans-serif;
+  cursor: pointer;
+}
+
+.opslaanZetels {
+  display: flex;
+  justify-content: center;
+}
+
 a:link, a:visited, a:active {
   text-decoration: underline;
   color: black;
-}
-
-header {
-  background-color: #1e6285;
-  color: #fff;
-  padding: 2rem;
-  text-align: center;
 }
 
 .partijen-container {
@@ -124,6 +139,11 @@ footer {
   align-items: flex-start;
   margin-top: 20px;
   flex-wrap: wrap;
+}
+
+/* Download afbeelding button */
+#grafiek-container > div:first-child {
+  text-align: center;
 }
 
 /* Responsieve layout: bij smalle schermen onder elkaar */

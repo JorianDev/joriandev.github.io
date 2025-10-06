@@ -3,6 +3,13 @@
 . for div class
 */
 
+header {
+  background-color: #1e6285;
+  color: #fff;
+  padding: 2rem;
+  text-align: center;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -12,16 +19,24 @@ body {
   color: #333;
 }
 
+button {
+  color: white;
+  background-color: #007bff;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  font-family: 'Arial', sans-serif;
+  cursor: pointer;
+}
+
+.opslaanZetels {
+  display: flex;
+  justify-content: center;
+}
+
 a:link, a:visited, a:active {
   text-decoration: underline;
   color: black;
-}
-
-header {
-  background-color: #1e6285;
-  color: #fff;
-  padding: 2rem;
-  text-align: center;
 }
 
 .partijen-container {
@@ -33,12 +48,17 @@ header {
 }
 
 .partij {
-    padding: 10px 15px;
-    background-color: white;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.2s;
+  flex: 1 1 calc(25% - 20px); /* parent gedeeld door vieren*/
+  max-width: calc(25% - 20px);
+  box-sizing: border-box;
+
+  padding: 10px 15px;
+  background-color: white;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 8rem;
 }
 
 .partij.selected {
@@ -75,7 +95,7 @@ header {
   color: red;
 }
 
-#opties {
+/* #opties {
   margin: 20px;
   text-align: center;
 }
@@ -85,7 +105,7 @@ header {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   margin-left: 10px;
-}
+} */
 
 main {
   padding: 2rem;
@@ -126,7 +146,19 @@ footer {
   flex-wrap: wrap;
 }
 
+/* Download afbeelding button */
+#grafiek-container > div:first-child {
+  text-align: center;
+}
+
 /* Responsieve layout: bij smalle schermen onder elkaar */
+@media (max-width: 840px) {
+  .partij {
+    flex: 1 1 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+  }
+}
+
 @media (max-width: 768px) {
   #grafiek-container {
     flex-direction: column;

@@ -1,4 +1,4 @@
-var countDownTime = new Date("Oct 29, 2025 07:30:00").getTime();
+var countDownTime = new Date("Oct 29, 2025 06:30:00").getTime(); //6.30 is 7.30 NL tijd
 var interval = setInterval(function(){
 
     var now = new Date().getTime();

@@ -116,8 +116,15 @@
     <button id="resetBtn">Reset</button>
   </div>
 
-  <div class="partijen-container" id="partijenContainer">
-    <!--JS voegt hier de partijen met zetels toe-->
+  <div id="knoppenEnCanvasContainer">
+    <div class="partijen-container" id="partijenContainer">
+      <!--JS voegt hier de partijen met zetels toe-->
+    </div>
+
+    <div id="kamerTekeningDiv">
+        <canvas id="kamerCanvas" width="500" height="250"></canvas><br> <!--450 x 300-->
+        <button id="opslaanZetels">Download afbeelding</button>
+    </div>
   </div>
 
   <!-- Textlabel met hoeveel zetels geselecteerd -->
@@ -128,10 +135,10 @@
   </div>
 
   <div id="grafiek-container">
-    <div>
-      <canvas id="kamerCanvas" width="500" height="250"></canvas><br> <!--450 x 300-->
+    <!-- <div>
+      <canvas id="kamerCanvas" width="500" height="250"></canvas><br>
       <button id="opslaanZetels">Download afbeelding</button>
-    </div>
+    </div> -->
     <div>
       <h2>Vergelijking met peiling</h2>
       <canvas id="vergelijkingChart" width="500" height="300"></canvas>

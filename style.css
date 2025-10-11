@@ -2,7 +2,7 @@
 # for div id
 . for div class
 */
-
+/* ALGEMEEN */
 header {
   background-color: #1e6285;
   color: #fff;
@@ -19,6 +19,10 @@ body {
   color: #333;
 }
 
+main {
+  padding: 2rem;
+}
+
 button {
   color: white;
   background-color: #007bff;
@@ -29,17 +33,19 @@ button {
   cursor: pointer;
 }
 
-.opslaanZetels {
-  display: flex;
-  justify-content: center;
-}
-
 a:link, a:visited, a:active {
   text-decoration: underline;
   color: black;
 }
 
-#knoppenEnCanvasContainer {
+/* KEUZE OPTIES */
+
+#options {
+  padding: 2rem;
+}
+
+/* ZETEL VERDELER */
+#zetelVerdeler {
   display: flex;
   justify-content: space-between;
   align-items: stretch;
@@ -48,6 +54,7 @@ a:link, a:visited, a:active {
   flex-wrap: wrap;
 }
 
+/* Linkerkant */
 .partijen-container {
   flex: 1 1 50%;
   display: flex;
@@ -60,7 +67,7 @@ a:link, a:visited, a:active {
 }
 
 .partij {
-  flex: 1 1 calc(50% - 20px); /* parent gedeeld door vieren*/
+  flex: 1 1 calc(50% - 20px); /* parent gedeeld door twee*/
   max-width: calc(50% - 20px);
   box-sizing: border-box;
 
@@ -75,10 +82,34 @@ a:link, a:visited, a:active {
 }
 
 .partij.selected {
-    background-color: #007bff;
-    color: white;
-    border-color: #007bff;
-  }
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.rechterkant {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+#zetels-display {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 1.5em;
+}
+
+.meerderheid {
+  color: green;
+  font-weight: bold;
+}
+
+.geen-meerderheid {
+  color: red;
+}
 
 #kamerTekeningDiv {
   flex: 1 1 50%;
@@ -89,9 +120,12 @@ a:link, a:visited, a:active {
   box-sizing: border-box;
 }
 
-#options {
-  padding: 2rem;
+.opslaanZetels {
+  display: flex;
+  justify-content: center;
 }
+
+/* EINDE ZETEL VERDELER */
 
 #eigenVerdelingLabel {
   padding-top: 2rem;
@@ -101,31 +135,6 @@ a:link, a:visited, a:active {
 #eigenVerdelingWaarschuwing {
   padding-left: 2rem;
 }
-
-#zetels-display {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 1.5em;
-  }
-
-.meerderheid {
-    color: green;
-    font-weight: bold;
-  }
-
-.geen-meerderheid {
-  color: red;
-}
-
-main {
-  padding: 2rem;
-}
-
-footer {
-  text-align: center;
-  padding: 1rem;
-}
-
 
 #bewerk-container {
   display: flex;
@@ -160,6 +169,11 @@ footer {
 /* Download afbeelding button */
 #grafiek-container > div:first-child {
   text-align: center;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
 }
 
 /* Responsieve layout: bij smalle schermen onder elkaar */

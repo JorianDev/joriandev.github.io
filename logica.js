@@ -86,9 +86,9 @@ function tekenKamer() {
 
     // Teken geselecteerde partijen in volgorde van klik
     gekozenPartijen.forEach(partij => {
-        for (let i = 0; i < partij.zetels; i++) {
+
             const startHoek = huidigeHoek;
-            const eindHoek = huidigeHoek + hoekPerZetel;
+            const eindHoek = huidigeHoek + partij.zetels * hoekPerZetel;
 
             ctx.beginPath();
             ctx.moveTo(middenX, middenY);
@@ -98,24 +98,31 @@ function tekenKamer() {
             ctx.fill();
 
             huidigeHoek = eindHoek;
-        }
     });
 
     // Teken lege zetels tot aan 150
     const resterend = 150 - totaalZetels;
-    for (let i = 0; i < resterend; i++) {
-        const startHoek = huidigeHoek;
-        const eindHoek = huidigeHoek + hoekPerZetel;
-
-        ctx.beginPath();
-        ctx.moveTo(middenX, middenY);
-        ctx.arc(middenX, middenY, straal, startHoek, eindHoek);
-        ctx.closePath();
-        ctx.fillStyle = "#ddd";
-        ctx.fill();
-
-        huidigeHoek = eindHoek;
+    if (resterend > 0) {
+      ctx.beginPath();
+      ctx.moveTo(middenX, middenY);
+      ctx.arc(middenX, middenY, straal, huidigeHoek, Math.PI + Math.PI);
+      ctx.closePath();
+      ctx.fillStyle = "#ddd";
+      ctx.fill();
     }
+    // for (let i = 0; i < resterend; i++) {
+    //     const startHoek = huidigeHoek;
+    //     const eindHoek = huidigeHoek + hoekPerZetel;
+
+    //     ctx.beginPath();
+    //     ctx.moveTo(middenX, middenY);
+    //     ctx.arc(middenX, middenY, straal, startHoek, eindHoek);
+    //     ctx.closePath();
+    //     ctx.fillStyle = "#ddd";
+    //     ctx.fill();
+
+    //     huidigeHoek = eindHoek;
+    // }
 }
 
 
@@ -225,8 +232,19 @@ function downloadMetLegenda() {
 
   });
 
+  //Unieke naam
+  const now = new Date();
+  const timestamp = now.getFullYear() + "-"+
+                    String(now.getMonth()+1).padStart(2,'0') + "-" +
+                    String(now.getDate()).padStart(2,'0') + "-" +
+                    String(now.getHours()).padStart(2,'0') + "-" +
+                    String(now.getMinutes()).padStart(2,'0') + "-" +
+                    String(now.getSeconds()).padStart(2,'0');
+  
+  const filename = `zetelverdeling_${timestamp}.png`;
+
   const link = document.createElement("a");
-  link.download = "zetelverdeling.png"
+  link.download = filename;
   link.href = outCanvas.toDataURL("image/png");
   link.click();
 }

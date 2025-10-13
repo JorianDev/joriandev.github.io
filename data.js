@@ -31,7 +31,7 @@ const zetelData = {
     tk2021: {
         meta: {
             bron: "Kiesraad",
-            datum: "2023-03-26",
+            datum: "2021-03-26",
             type: "Verkiezingsuitslag"
         },
 
@@ -81,6 +81,33 @@ const zetelData = {
             { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
             { naam: "BBB", zetels: 4, kleur: "#93c01f"},
             { naam: "50PLUS", zetels: 1, kleur: "#721fc0ff"},
+        ]
+    },
+
+    peilingIpsos_Okt6: {
+        meta: {
+            bron: "Ipsos I&O",
+            datum: "2025-10-06",
+            type: "Peiling"
+        },
+
+        data: [
+            { naam: "PVV", zetels: 31, kleur: "#1E90FF"},
+            { naam: "GroenLinks/PvdA", zetels: 22, kleur: "#ff0000"},
+            { naam: "VVD", zetels: 13, kleur: "#ff6400"},
+            { naam: "NSC", zetels: 0, kleur: "#143272"},
+            { naam: "CDA", zetels: 24, kleur: "#2cc84d"},
+            { naam: "D66", zetels: 14, kleur: "#00ae41"},
+            { naam: "JA21", zetels: 13, kleur: "#242b57"},
+            { naam: "SP", zetels: 4, kleur: "#ec1b23"},
+            { naam: "FVD", zetels: 4, kleur: "#84171a"},
+            { naam: "PvdDieren", zetels: 5, kleur: "#00621e"},
+            { naam: "SGP", zetels: 4, kleur: "#e95d0f"},
+            { naam: "DENK", zetels: 4, kleur: "#00b7b3"},
+            { naam: "Volt", zetels: 4, kleur: "#502378"},
+            { naam: "ChristenUnie", zetels: 2, kleur: "#00a5e8"},
+            { naam: "BBB", zetels: 4, kleur: "#93c01f"},
+            { naam: "50PLUS", zetels: 2, kleur: "#721fc0ff"},
         ]
     },
 

@@ -137,8 +137,12 @@ function tekenVergelijkingChart() {
     meta = zetelData[gekozen].meta;
   }
 
-  const partijenNamen = huidige.map(p => p.naam);
-  const kleuren = huidige.map(p => p.kleur);
+  //const partijenNamen = huidige.map(p => p.naam);
+  //const kleuren = huidige.map(p => p.kleur);
+
+  const partijenNamen = peiling.map(p => p.naam);
+  const kleuren = peiling.map(p => p.kleur);
+
   const huidigeZetels = partijenNamen.map(naam => {
     const partij = huidige.find(p => p.naam === naam);
     return partij ? partij.zetels : 0;
@@ -264,7 +268,7 @@ function tekenLijnGrafiek() {
 
   //Tijdlijn
   // const datasetsNamen = Object.keys(zetelData).filter(k => zetelData[k].meta && zetelData[k].meta.type === "Peiling");
-  const datasetsNamen = Object.keys(zetelData);
+  const datasetsNamen = Object.keys(zetelData).filter(k => zetelData[k].meta && zetelData[k].meta.type !== "Eigen Verdeling");
 
   const combined = datasetsNamen.map(k => ({
     datum: zetelData[k].meta.datum,

@@ -251,3 +251,81 @@ function downloadMetLegenda() {
   link.href = outCanvas.toDataURL("image/png");
   link.click();
 }
+
+
+let lijnChart = null;
+
+function tekenLijnGrafiek() {
+  const ctx = document.getElementById("lijnChart");
+  const partijSelect = document.getElementById("partijSelect");
+  const gekozen = partijSelect.value;
+
+  if (!gekozen) return;
+
+  //Tijdlijn
+  // const datasetsNamen = Object.keys(zetelData).filter(k => zetelData[k].meta && zetelData[k].meta.type === "Peiling");
+  const datasetsNamen = Object.keys(zetelData);
+
+  const combined = datasetsNamen.map(k => ({
+    datum: zetelData[k].meta.datum,
+    waarde: zetelData[k].data.find(p => p.naam === gekozen)?.zetels || 0
+  }));
+
+  combined.sort((a, b) => new Date(a.datum) - new Date(b.datum));
+
+  const labels = combined.map(d => d.datum);
+  const zetelwaarden = combined.map(d => d.waarde);
+
+
+
+  if (lijnChart) lijnChart.destroy();
+
+  lijnChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [{
+        label: gekozen,
+        data: zetelwaarden,
+        borderColor: "#007bff",
+        backgroundColor: "#007bff33",
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 8,
+      }],
+    },
+    options: {
+      responsive: false,
+      plugins: {
+        legend: {display: true},
+        title: {
+          display: true,
+          text: `Zetelontwikkeling van ${gekozen} over tijd`,
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 55,
+        },
+      },
+    },
+  });
+}
+
+function vulPartijSelect() {
+  const partijSelect = document.getElementById("partijSelect");
+  partijSelect.innerHTML = "";
+
+  // Gebruik partijen uit TK2023 als referentie
+  zetelData.tk2023.data.forEach(p => {
+    const opt = document.createElement("option");
+    opt.value = p.naam;
+    opt.textContent = p.naam;
+    partijSelect.appendChild(opt);
+  });
+
+  partijSelect.addEventListener("change", tekenLijnGrafiek);
+}
+
+vulPartijSelect();

@@ -28,6 +28,62 @@ const zetelData = {
         ]
     },
 
+    tk2021: {
+        meta: {
+            bron: "Kiesraad",
+            datum: "2023-03-26",
+            type: "Verkiezingsuitslag"
+        },
+
+        data: [
+            { naam: "PVV", zetels: 17, kleur: "#1E90FF"},
+            { naam: "GroenLinks", zetels: 8, kleur: "#1cee00ff"},
+            { naam: "PvdA", zetels: 9, kleur: "#ff0000"},
+            { naam: "VVD", zetels: 34, kleur: "#ff6400"},
+            { naam: "NSC", zetels: 20, kleur: "#143272"},
+            { naam: "CDA", zetels: 15, kleur: "#2cc84d"},
+            { naam: "D66", zetels: 24, kleur: "#00ae41"},
+            { naam: "JA21", zetels: 3, kleur: "#242b57"},
+            { naam: "SP", zetels: 9, kleur: "#ec1b23"},
+            { naam: "FVD", zetels: 8, kleur: "#84171a"},
+            { naam: "PvdDieren", zetels: 6, kleur: "#00621e"},
+            { naam: "SGP", zetels: 3, kleur: "#e95d0f"},
+            { naam: "DENK", zetels: 3, kleur: "#00b7b3"},
+            { naam: "Volt", zetels: 3, kleur: "#502378"},
+            { naam: "ChristenUnie", zetels: 5, kleur: "#00a5e8"},
+            { naam: "BBB", zetels: 1, kleur: "#93c01f"},
+            { naam: "50PLUS", zetels: 1, kleur: "#721fc0ff"},
+            { naam: "BIJ1", zetels: 1, kleur: "#5300a0ff"},
+        ]
+    },
+
+    peilingMDH_Okt10: {
+        meta: {
+            bron: "Maurice de Hond",
+            datum: "2025-10-10",
+            type: "Peiling"
+        },
+
+        data: [
+            { naam: "PVV", zetels: 31, kleur: "#1E90FF"},
+            { naam: "GroenLinks/PvdA", zetels: 25, kleur: "#ff0000"},
+            { naam: "VVD", zetels: 15, kleur: "#ff6400"},
+            { naam: "NSC", zetels: 0, kleur: "#143272"},
+            { naam: "CDA", zetels: 22, kleur: "#2cc84d"},
+            { naam: "D66", zetels: 14, kleur: "#00ae41"},
+            { naam: "JA21", zetels: 13, kleur: "#242b57"},
+            { naam: "SP", zetels: 4, kleur: "#ec1b23"},
+            { naam: "FVD", zetels: 5, kleur: "#84171a"},
+            { naam: "PvdDieren", zetels: 3, kleur: "#00621e"},
+            { naam: "SGP", zetels: 3, kleur: "#e95d0f"},
+            { naam: "DENK", zetels: 4, kleur: "#00b7b3"},
+            { naam: "Volt", zetels: 3, kleur: "#502378"},
+            { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
+            { naam: "BBB", zetels: 4, kleur: "#93c01f"},
+            { naam: "50PLUS", zetels: 1, kleur: "#721fc0ff"},
+        ]
+    },
+
     peilingMDH_Okt: {
         meta: {
             bron: "Maurice de Hond",

@@ -5,6 +5,9 @@ const statusLabel = document.getElementById("statusLabel");
 const datasetSelect = document.getElementById("zetelDataset");
 const eigenVerdelingSelectie = document.getElementById("eigenVerdelingSelectie");
 
+//let gekozenPartijen = [];
+//const meerderheid = 76;
+
 
 function laadPartijen() {
   container.innerHTML = "";
@@ -13,7 +16,12 @@ function laadPartijen() {
 
   gekozenPartijen = [];
 
-  partijen.forEach(partij => {
+  const gekozenDataset = datasetSelect.value;
+  const data = gekozenDataset === "eigenVerdeling"
+    ? partijen
+    : zetelData[gekozenDataset].data;
+
+  data.forEach(partij => {
     // Zetelknop
     const div = document.createElement("div");
     div.classList.add("partij");
@@ -110,19 +118,6 @@ function tekenKamer() {
       ctx.fillStyle = "#ddd";
       ctx.fill();
     }
-    // for (let i = 0; i < resterend; i++) {
-    //     const startHoek = huidigeHoek;
-    //     const eindHoek = huidigeHoek + hoekPerZetel;
-
-    //     ctx.beginPath();
-    //     ctx.moveTo(middenX, middenY);
-    //     ctx.arc(middenX, middenY, straal, startHoek, eindHoek);
-    //     ctx.closePath();
-    //     ctx.fillStyle = "#ddd";
-    //     ctx.fill();
-
-    //     huidigeHoek = eindHoek;
-    // }
 }
 
 
@@ -130,14 +125,16 @@ let vergelijkingChart = null;
 
 function tekenVergelijkingChart() {
   const gekozen = datasetSelect.value;
-  const huidige = zetelData.tk2023;
+  const huidige = zetelData.tk2023.data;
 
-  let peiling;
+  let peiling, meta;
 
   if (gekozen === "eigenVerdeling") {
     peiling = partijen;
+    meta = {bron: "Eigen verdeling", datum: "Onbekend", type: "Eigen"};
   } else {
-    peiling = zetelData[gekozen];
+    peiling = zetelData[gekozen].data;
+    meta = zetelData[gekozen].meta;
   }
 
   const partijenNamen = huidige.map(p => p.naam);
@@ -156,6 +153,11 @@ function tekenVergelijkingChart() {
 
   if (vergelijkingChart) vergelijkingChart.destroy(); // voorkom dubbele charts
 
+  const titelTekst = 
+    gekozen === "eigenVerdeling"
+    ? "Eigen Verdeling"
+    : `${meta.type} (${meta.bron}, ${meta.datum})`;
+
   vergelijkingChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -167,8 +169,9 @@ function tekenVergelijkingChart() {
           backgroundColor: kleuren,
         },
         {
-          label: gekozen === "eigenVerdeling" ? 'Eigen verdeling' : `Peiling (${gekozen})`,
+          //label: gekozen === "eigenVerdeling" ? 'Eigen verdeling' : `Peiling (${gekozen})`,
           //label: `Peiling (${gekozen})`,
+          label: titelTekst,
           data: peilingZetels,
           backgroundColor: kleuren.map(k => k + "66"), // transparanter
         }
@@ -180,7 +183,7 @@ function tekenVergelijkingChart() {
         legend: { position: 'top' },
         title: {
           display: true,
-          text: 'Vergelijking tussen uitslag en peiling'
+          text: `Vergelijking tussen TK 23 en ${titelTekst}`,
         }
       },
       scales: {

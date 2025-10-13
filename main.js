@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (opgeslagenVerdeling) {
     try {
       const verdelingArray = JSON.parse(opgeslagenVerdeling);
-      zetelData.eigenVerdeling.forEach(partij => {
+      zetelData.eigenVerdeling.data.forEach(partij => {
         const opgeslagenPartij = verdelingArray.find(p => p.naam === partij.naam);
         if (opgeslagenPartij) {
           partij.zetels = opgeslagenPartij.zetels;
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Dataset selectie
   datasetSelect.addEventListener("change", () => {
     const gekozen = datasetSelect.value;
-    partijen = zetelData[gekozen].map(p => ({ ...p }));
+    partijen = zetelData[gekozen].data.map(p => ({ ...p }));
     laadPartijen();
     tekenVergelijkingChart();
 

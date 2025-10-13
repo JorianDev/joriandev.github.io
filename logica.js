@@ -5,6 +5,9 @@ const statusLabel = document.getElementById("statusLabel");
 const datasetSelect = document.getElementById("zetelDataset");
 const eigenVerdelingSelectie = document.getElementById("eigenVerdelingSelectie");
 
+//let gekozenPartijen = [];
+//const meerderheid = 76;
+
 
 function laadPartijen() {
   container.innerHTML = "";
@@ -13,7 +16,12 @@ function laadPartijen() {
 
   gekozenPartijen = [];
 
-  partijen.forEach(partij => {
+  const gekozenDataset = datasetSelect.value;
+  const data = gekozenDataset === "eigenVerdeling"
+    ? partijen
+    : zetelData[gekozenDataset].data;
+
+  data.forEach(partij => {
     // Zetelknop
     const div = document.createElement("div");
     div.classList.add("partij");
@@ -110,19 +118,6 @@ function tekenKamer() {
       ctx.fillStyle = "#ddd";
       ctx.fill();
     }
-    // for (let i = 0; i < resterend; i++) {
-    //     const startHoek = huidigeHoek;
-    //     const eindHoek = huidigeHoek + hoekPerZetel;
-
-    //     ctx.beginPath();
-    //     ctx.moveTo(middenX, middenY);
-    //     ctx.arc(middenX, middenY, straal, startHoek, eindHoek);
-    //     ctx.closePath();
-    //     ctx.fillStyle = "#ddd";
-    //     ctx.fill();
-
-    //     huidigeHoek = eindHoek;
-    // }
 }
 
 
@@ -130,18 +125,24 @@ let vergelijkingChart = null;
 
 function tekenVergelijkingChart() {
   const gekozen = datasetSelect.value;
-  const huidige = zetelData.tk2023;
+  const huidige = zetelData.tk2023.data;
 
-  let peiling;
+  let peiling, meta;
 
   if (gekozen === "eigenVerdeling") {
     peiling = partijen;
+    meta = {bron: "Eigen verdeling", datum: "Onbekend", type: "Eigen"};
   } else {
-    peiling = zetelData[gekozen];
+    peiling = zetelData[gekozen].data;
+    meta = zetelData[gekozen].meta;
   }
 
-  const partijenNamen = huidige.map(p => p.naam);
-  const kleuren = huidige.map(p => p.kleur);
+  //const partijenNamen = huidige.map(p => p.naam);
+  //const kleuren = huidige.map(p => p.kleur);
+
+  const partijenNamen = peiling.map(p => p.naam);
+  const kleuren = peiling.map(p => p.kleur);
+
   const huidigeZetels = partijenNamen.map(naam => {
     const partij = huidige.find(p => p.naam === naam);
     return partij ? partij.zetels : 0;
@@ -156,6 +157,11 @@ function tekenVergelijkingChart() {
 
   if (vergelijkingChart) vergelijkingChart.destroy(); // voorkom dubbele charts
 
+  const titelTekst = 
+    gekozen === "eigenVerdeling"
+    ? "Eigen Verdeling"
+    : `${meta.type} (${meta.bron}, ${meta.datum})`;
+
   vergelijkingChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -167,8 +173,9 @@ function tekenVergelijkingChart() {
           backgroundColor: kleuren,
         },
         {
-          label: gekozen === "eigenVerdeling" ? 'Eigen verdeling' : `Peiling (${gekozen})`,
+          //label: gekozen === "eigenVerdeling" ? 'Eigen verdeling' : `Peiling (${gekozen})`,
           //label: `Peiling (${gekozen})`,
+          label: titelTekst,
           data: peilingZetels,
           backgroundColor: kleuren.map(k => k + "66"), // transparanter
         }
@@ -180,7 +187,7 @@ function tekenVergelijkingChart() {
         legend: { position: 'top' },
         title: {
           display: true,
-          text: 'Vergelijking tussen uitslag en peiling'
+          text: `Vergelijking tussen TK 23 en ${titelTekst}`,
         }
       },
       scales: {
@@ -248,3 +255,81 @@ function downloadMetLegenda() {
   link.href = outCanvas.toDataURL("image/png");
   link.click();
 }
+
+
+let lijnChart = null;
+
+function tekenLijnGrafiek() {
+  const ctx = document.getElementById("lijnChart");
+  const partijSelect = document.getElementById("partijSelect");
+  const gekozen = partijSelect.value;
+
+  if (!gekozen) return;
+
+  //Tijdlijn
+  // const datasetsNamen = Object.keys(zetelData).filter(k => zetelData[k].meta && zetelData[k].meta.type === "Peiling");
+  const datasetsNamen = Object.keys(zetelData).filter(k => zetelData[k].meta && zetelData[k].meta.type !== "Eigen Verdeling");
+
+  const combined = datasetsNamen.map(k => ({
+    datum: zetelData[k].meta.datum,
+    waarde: zetelData[k].data.find(p => p.naam === gekozen)?.zetels || 0
+  }));
+
+  combined.sort((a, b) => new Date(a.datum) - new Date(b.datum));
+
+  const labels = combined.map(d => d.datum);
+  const zetelwaarden = combined.map(d => d.waarde);
+
+
+
+  if (lijnChart) lijnChart.destroy();
+
+  lijnChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [{
+        label: gekozen,
+        data: zetelwaarden,
+        borderColor: "#007bff",
+        backgroundColor: "#007bff33",
+        tension: 0.3,
+        pointRadius: 5,
+        pointHoverRadius: 8,
+      }],
+    },
+    options: {
+      responsive: false,
+      plugins: {
+        legend: {display: true},
+        title: {
+          display: true,
+          text: `Zetelontwikkeling van ${gekozen} over tijd`,
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 55,
+        },
+      },
+    },
+  });
+}
+
+function vulPartijSelect() {
+  const partijSelect = document.getElementById("partijSelect");
+  partijSelect.innerHTML = "";
+
+  // Gebruik partijen uit TK2023 als referentie
+  zetelData.tk2023.data.forEach(p => {
+    const opt = document.createElement("option");
+    opt.value = p.naam;
+    opt.textContent = p.naam;
+    partijSelect.appendChild(opt);
+  });
+
+  partijSelect.addEventListener("change", tekenLijnGrafiek);
+}
+
+vulPartijSelect();

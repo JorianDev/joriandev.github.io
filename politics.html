@@ -107,10 +107,13 @@
     <select id="zetelDataset">
         <!--values moeten overeenkomen met javascript values-->
         <option value="tk2023">Tweede Kamer 2023</option>
+        <option value="peilingMDH_Okt10">Peiling MDH - 10 Oktober 2025</option>
+        <option value="peilingIpsos_Okt6">Peiling Ipsos - 6 Oktober 2025</option>
         <option value="peilingMDH_Okt">Peiling MDH - 3 Oktober 2025</option>
         <option value="peilingEenV_Sept">Peiling EenVandaag - 30 September 2025</option>
         <option value="peilingMDH_Sept">Peiling MDH - 26 September 2025</option>
         <option value="peilingMDH_Juni">Peiling MDH - 21 juni 2025</option>
+        <option value="tk2021">Tweede Kamer 2021</option>
         <option value="eigenVerdeling">Maak eigen verdeling</option>
     </select>
     <button id="resetBtn">Reset</button>
@@ -139,12 +142,16 @@
 
   <div id="grafiek-container">
     <div>
-      <h2>Vergelijking met peiling</h2>
       <canvas id="vergelijkingChart" width="500" height="300"></canvas>
     </div>
   </div>
 
 
+  <div>
+    <p>Selecteer hieronder een partij en zie het aantal zetels over de tijd</p>
+    <select id="partijSelect"></select>
+    <canvas id="lijnChart" width="500" height="300"></canvas>
+  </div>
 
 
 

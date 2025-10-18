@@ -267,8 +267,8 @@ function tekenLijnGrafiek() {
   if (!gekozen) return;
 
   //Tijdlijn
-  // const datasetsNamen = Object.keys(zetelData).filter(k => zetelData[k].meta && zetelData[k].meta.type === "Peiling");
-  const datasetsNamen = Object.keys(zetelData).filter(k => zetelData[k].meta && zetelData[k].meta.type !== "Eigen Verdeling");
+  const datasetsNamen = Object.keys(zetelData).filter(k => zetelData[k].meta && zetelData[k].meta.type === "Peiling");
+  // const datasetsNamen = Object.keys(zetelData).filter(k => zetelData[k].meta && zetelData[k].meta.type !== "Eigen Verdeling");
 
   const combined = datasetsNamen.map(k => ({
     datum: zetelData[k].meta.datum,

@@ -57,6 +57,57 @@ const zetelData = {
         ]
     },
 
+    tk2017: {
+        meta: {
+            bron: "Kiesraad",
+            datum: "2017-03-15",
+            type: "Verkiezingsuitslag"
+        },
+
+        data: [
+            { naam: "PVV", zetels: 20, kleur: "#1E90FF"},
+            { naam: "GroenLinks", zetels: 14, kleur: "#1cee00ff"},
+            { naam: "PvdA", zetels: 9, kleur: "#ff0000"},
+            { naam: "VVD", zetels: 33, kleur: "#ff6400"},
+            { naam: "CDA", zetels: 19, kleur: "#2cc84d"},
+            { naam: "D66", zetels: 19, kleur: "#00ae41"},
+            { naam: "SP", zetels: 14, kleur: "#ec1b23"},
+            { naam: "FVD", zetels: 2, kleur: "#84171a"},
+            { naam: "PvdDieren", zetels: 5, kleur: "#00621e"},
+            { naam: "SGP", zetels: 3, kleur: "#e95d0f"},
+            { naam: "DENK", zetels: 3, kleur: "#00b7b3"},
+            { naam: "ChristenUnie", zetels: 5, kleur: "#00a5e8"},
+            { naam: "50PLUS", zetels: 4, kleur: "#721fc0ff"},
+        ]
+    },
+
+    peilingMDH_Okt17: {
+        meta: {
+            bron: "Maurice de Hond",
+            datum: "2025-10-17",
+            type: "Peiling"
+        },
+
+        data: [
+            { naam: "PVV", zetels: 28, kleur: "#1E90FF"},
+            { naam: "GroenLinks/PvdA", zetels: 24, kleur: "#ff0000"},
+            { naam: "VVD", zetels: 16, kleur: "#ff6400"},
+            { naam: "NSC", zetels: 0, kleur: "#143272"},
+            { naam: "CDA", zetels: 24, kleur: "#2cc84d"},
+            { naam: "D66", zetels: 17, kleur: "#00ae41"},
+            { naam: "JA21", zetels: 11, kleur: "#242b57"},
+            { naam: "SP", zetels: 4, kleur: "#ec1b23"},
+            { naam: "FVD", zetels: 6, kleur: "#84171a"},
+            { naam: "PvdDieren", zetels: 3, kleur: "#00621e"},
+            { naam: "SGP", zetels: 3, kleur: "#e95d0f"},
+            { naam: "DENK", zetels: 4, kleur: "#00b7b3"},
+            { naam: "Volt", zetels: 2, kleur: "#502378"},
+            { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
+            { naam: "BBB", zetels: 4, kleur: "#93c01f"},
+            { naam: "50PLUS", zetels: 1, kleur: "#721fc0ff"},
+        ]
+    },
+
     peilingIpsos_Okt16: {
         meta: {
             bron: "Ipsos I&O",
@@ -252,7 +303,7 @@ const zetelData = {
     eigenVerdeling: {
         meta: {
             bron: "Gebruiker",
-            datum: "2025-10-13",
+            datum: new Date().toISOString().split('T')[0],
             type: "Eigen verdeling"
         },
 

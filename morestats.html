@@ -3,25 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Politiek - JorianDev</title>
+  <title>Meer Statistieken - JorianDev</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="logo-website-github.png">
 
   <script src="data.js" defer></script>
-  <script src="logica.js" defer></script>
-  <script src="main.js" defer></script>
   <script src="maths.js" defer></script>
+  <script src="morestats.js" defer></script>
 </head>
 
 <body>
   <header>
     <h1>Politiek</h1>
-    <h2 id="countdown"></h2>
+    <h2 id="countdown">Laden...</h2>
   </header>
+
+  <main>
+    <button id="TerugBtn">
+      <a href="politics.html">Terug</a>
+    </button>
+
+
+    <div id="lijnGrafiekOverJarenDiv", style="width: 100%; height: 600px;">
+      <canvas id="lijnGrafiekUitslagen"></canvas>
+    </div>
+  </main>
 
 
   <footer>
     <p>© 2025 JorianDev</p>
   </footer>
-
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>

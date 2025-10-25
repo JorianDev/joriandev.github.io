@@ -329,7 +329,10 @@ function vulPartijSelect() {
     partijSelect.appendChild(opt);
   });
 
+  partijSelect.value = "PVV";
+
   partijSelect.addEventListener("change", tekenLijnGrafiek);
 }
 
 vulPartijSelect();
+tekenLijnGrafiek()

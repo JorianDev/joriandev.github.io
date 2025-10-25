@@ -41,6 +41,8 @@ function tekenLijnGrafiekUitslagen() {
 
     if (lijnGrafiekUitslagen) lijnGrafiekUitslagen.destroy();
 
+    const isSmallScreen = window.innerWidth < 780;
+
     lijnGrafiekUitslagen = new Chart(canvas, {
         type: "line",
         data: {
@@ -53,7 +55,13 @@ function tekenLijnGrafiekUitslagen() {
             plugins: {
                 legend: {
                     display: true,
-                    position: "right",
+                    position: isSmallScreen ? "bottom" : "right",
+                    labels: {
+                        boxWidth: 20,
+                        font: {
+                            size: isSmallScreen ? 10 : 12,
+                        }
+                    }
                 },
                 title: {
                     display: true,
@@ -81,6 +89,5 @@ function tekenLijnGrafiekUitslagen() {
     
 }
 
-window.onload = function() {
-    tekenLijnGrafiekUitslagen();
-};
+window.addEventListener("load", tekenLijnGrafiekUitslagen);
+window.addEventListener("resize", tekenLijnGrafiekUitslagen);

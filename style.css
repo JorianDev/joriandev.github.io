@@ -23,6 +23,17 @@ main {
   padding: 2rem;
 }
 
+#ChoosePage {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#politicsOption {
+  width: 10rem;
+  height: 2rem;
+}
+
 button {
   color: white;
   background-color: #007bff;

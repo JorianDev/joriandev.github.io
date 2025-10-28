@@ -81,6 +81,60 @@ const zetelData = {
         ]
     },
 
+    peilingIpsos_Okt28: {
+        meta: {
+            bron: "Ipsos I&O",
+            datum: "2025-10-28",
+            type: "Peiling"
+        },
+
+        data: [
+            { naam: "PVV", zetels: 23, kleur: "#1E90FF"},
+            { naam: "GroenLinks/PvdA", zetels: 23, kleur: "#ff0000"},
+            { naam: "VVD", zetels: 17, kleur: "#ff6400"},
+            { naam: "NSC", zetels: 1, kleur: "#143272"},
+            { naam: "CDA", zetels: 19, kleur: "#2cc84d"},
+            { naam: "D66", zetels: 23, kleur: "#00ae41"},
+            { naam: "JA21", zetels: 11, kleur: "#242b57"},
+            { naam: "SP", zetels: 4, kleur: "#ec1b23"},
+            { naam: "FVD", zetels: 6, kleur: "#84171a"},
+            { naam: "PvdDieren", zetels: 4, kleur: "#00621e"},
+            { naam: "SGP", zetels: 3, kleur: "#e95d0f"},
+            { naam: "DENK", zetels: 3, kleur: "#00b7b3"},
+            { naam: "Volt", zetels: 2, kleur: "#502378"},
+            { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
+            { naam: "BBB", zetels: 5, kleur: "#93c01f"},
+            { naam: "50PLUS", zetels: 3, kleur: "#721fc0ff"},
+        ]
+    },
+
+    peilingEenV_Okt28: {
+        meta: {
+            bron: "EenVandaag",
+            datum: "2025-10-28",
+            type: "Peiling"
+        },
+
+        data: [
+            { naam: "PVV", zetels: 29, kleur: "#1E90FF"},
+            { naam: "GroenLinks/PvdA", zetels: 25, kleur: "#ff0000"},
+            { naam: "VVD", zetels: 16, kleur: "#ff6400"},
+            { naam: "NSC", zetels: 0, kleur: "#143272"},
+            { naam: "CDA", zetels: 19, kleur: "#2cc84d"},
+            { naam: "D66", zetels: 24, kleur: "#00ae41"},
+            { naam: "JA21", zetels: 8, kleur: "#242b57"},
+            { naam: "SP", zetels: 5, kleur: "#ec1b23"},
+            { naam: "FVD", zetels: 6, kleur: "#84171a"},
+            { naam: "PvdDieren", zetels: 2, kleur: "#00621e"},
+            { naam: "SGP", zetels: 3, kleur: "#e95d0f"},
+            { naam: "DENK", zetels: 3, kleur: "#00b7b3"},
+            { naam: "Volt", zetels: 2, kleur: "#502378"},
+            { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
+            { naam: "BBB", zetels: 3, kleur: "#93c01f"},
+            { naam: "50PLUS", zetels: 2, kleur: "#721fc0ff"},
+        ]
+    },
+
     peilingMDH_Okt24: {
         meta: {
             bron: "Maurice De Hond",

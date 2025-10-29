@@ -40,7 +40,7 @@ const zetelData = {
             { naam: "GroenLinks", zetels: 8, kleur: "#1cee00ff"},
             { naam: "PvdA", zetels: 9, kleur: "#ff0000"},
             { naam: "VVD", zetels: 34, kleur: "#ff6400"},
-            { naam: "NSC", zetels: 20, kleur: "#143272"},
+            { naam: "NSC", zetels: 0, kleur: "#143272"},
             { naam: "CDA", zetels: 15, kleur: "#2cc84d"},
             { naam: "D66", zetels: 24, kleur: "#00ae41"},
             { naam: "JA21", zetels: 3, kleur: "#242b57"},
@@ -351,8 +351,6 @@ const zetelData = {
         ]
     },
     
-    
-
     peilingEenV_Sept: {
         meta: {
             bron: "EenVandaag",
@@ -431,6 +429,34 @@ const zetelData = {
             { naam: "Volt", zetels: 3, kleur: "#502378"},
             { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
             { naam: "BBB", zetels: 3, kleur: "#93c01f"},
+            { naam: "50PLUS", zetels: 0, kleur: "#721fc0ff"},
+        ]
+    },
+
+    peilingMDH_20Jan24: {
+        meta: {
+            bron: "Maurice De Hond",
+            datum: "2024-01-20",
+            type: "Peiling"
+        },
+        // https://maurice.nl/2024/01/20/pvv-4-keer-zo-groot-als-de-vvd/
+
+        data: [
+            { naam: "PVV", zetels: 49, kleur: "#1E90FF"},
+            { naam: "GroenLinks/PvdA", zetels: 23, kleur: "#ff0000"},
+            { naam: "VVD", zetels: 12, kleur: "#ff6400"},
+            { naam: "NSC", zetels: 17, kleur: "#143272"},
+            { naam: "CDA", zetels: 6, kleur: "#2cc84d"},
+            { naam: "D66", zetels: 10, kleur: "#00ae41"},
+            { naam: "JA21", zetels: 0, kleur: "#242b57"},
+            { naam: "SP", zetels: 6, kleur: "#ec1b23"},
+            { naam: "FVD", zetels: 3, kleur: "#84171a"},
+            { naam: "PvdDieren", zetels: 3, kleur: "#00621e"},
+            { naam: "SGP", zetels: 3, kleur: "#e95d0f"},
+            { naam: "DENK", zetels: 3, kleur: "#00b7b3"},
+            { naam: "Volt", zetels: 3, kleur: "#502378"},
+            { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
+            { naam: "BBB", zetels: 9, kleur: "#93c01f"},
             { naam: "50PLUS", zetels: 0, kleur: "#721fc0ff"},
         ]
     },

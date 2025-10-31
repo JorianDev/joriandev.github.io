@@ -7,17 +7,19 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/x-icon" href="logo-website-github.png">
 
+  <script src="main.js" defer></script>
   <script src="data.js" defer></script>
   <script src="logica.js" defer></script>
-  <script src="main.js" defer></script>
-  <script src="maths.js" defer></script>
 </head>
 
 <body>
   <header>
     <h1>Politiek</h1>
-    <h2 id="countdown">Laden...</h2>
   </header>
+
+  <button id="TerugBtn">
+      <a href="index.html">Terug</a>
+  </button>
 
   <main>
     <section>
@@ -111,14 +113,12 @@
     <label for="zetelDataset">Kies verkiezingsuitslag of peiling</label>
     <select id="zetelDataset">
         <!--values moeten overeenkomen met javascript values-->
+        <option value="tk2025">Tweede Kamer 2025</option>
         <option value="tk2023">Tweede Kamer 2023</option>
         <option value="peilingMDH_Okt28">Slotpeiling MDH - 28 Oktober 2025</option>
         <option value="peilingIpsos_Okt28">Slotpeiling Ipsos - 28 Oktober 2025</option>
         <option value="peilingEenV_Okt28">Slotpeiling EenVandaag - 28 Oktober 2025</option>
         <option value="peilingMDH_Okt24">Peiling MDH - 24 Oktober 2025</option>
-        <option value="peilingEenV_Okt21">Peiling EenVandaag - 21 oktober 2025</option>
-        <option value="peilingMDH_Okt17">Peiling MDH - 17 Oktober 2025</option>
-        <option value="peilingMDH_Okt10">Peiling MDH - 10 Oktober 2025</option>
         <option value="peilingIpsos_Okt6">Peiling Ipsos - 6 Oktober 2025</option>
         <option value="peilingMDH_Okt">Peiling MDH - 3 Oktober 2025</option>
         <option value="peilingEenV_Sept">Peiling EenVandaag - 30 September 2025</option>

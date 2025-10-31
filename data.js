@@ -1,6 +1,32 @@
 // Datasets
 // Verdeling: eigenVerdeling komt overeen met tk2023. De gebruiker kan deze dataset zelf aanpassen.
 const zetelData = {
+    tk2025: {
+        meta: {
+            bron: "Kiesraad",
+            datum: "2025-10-29",
+            type: "Verkiezingsuitslag"
+        },
+
+        data: [
+            { naam: "PVV", zetels: 26, kleur: "#1E90FF"},
+            { naam: "GroenLinks/PvdA", zetels: 20, kleur: "#ff0000"},
+            { naam: "VVD", zetels: 22, kleur: "#ff6400"},
+            { naam: "CDA", zetels: 18, kleur: "#2cc84d"},
+            { naam: "D66", zetels: 26, kleur: "#00ae41"},
+            { naam: "JA21", zetels: 9, kleur: "#242b57"},
+            { naam: "SP", zetels: 3, kleur: "#ec1b23"},
+            { naam: "FVD", zetels: 7, kleur: "#84171a"},
+            { naam: "PvdDieren", zetels: 3, kleur: "#00621e"},
+            { naam: "SGP", zetels: 3, kleur: "#e95d0f"},
+            { naam: "DENK", zetels: 3, kleur: "#00b7b3"},
+            { naam: "Volt", zetels: 1, kleur: "#502378"},
+            { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
+            { naam: "BBB", zetels: 4, kleur: "#93c01f"},
+            { naam: "50PLUS", zetels: 2, kleur: "#721fc0ff"},
+        ]
+    },
+
     tk2023: {
         meta: {
             bron: "Kiesraad",
@@ -24,7 +50,6 @@ const zetelData = {
             { naam: "Volt", zetels: 2, kleur: "#502378"},
             { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
             { naam: "BBB", zetels: 7, kleur: "#93c01f"},
-            { naam: "50PLUS", zetels: 0, kleur: "#721fc0ff"},
         ]
     },
 

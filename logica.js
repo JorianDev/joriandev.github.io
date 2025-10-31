@@ -5,10 +5,6 @@ const statusLabel = document.getElementById("statusLabel");
 const datasetSelect = document.getElementById("zetelDataset");
 const eigenVerdelingSelectie = document.getElementById("eigenVerdelingSelectie");
 
-//let gekozenPartijen = [];
-//const meerderheid = 76;
-
-
 function laadPartijen() {
   container.innerHTML = "";
   const bewerkContainer = document.getElementById("bewerk-container");

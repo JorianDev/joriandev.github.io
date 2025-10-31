@@ -7,8 +7,8 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/x-icon" href="logo-website-github.png">
 
-  <script src="main.js" defer></script>
   <script src="data.js" defer></script>
+  <script src="main.js" defer></script>
   <script src="logica.js" defer></script>
 </head>
 
@@ -159,7 +159,13 @@
 
   <div>
     <p>Selecteer hieronder een partij en zie het aantal zetels over de tijd.</p>
-    <select id="partijSelect"></select>
+    Selecteer partij: <select id="partijSelect"></select><br>
+    Zichtbaar: 
+    <select id="selectZichtbaarheid">
+      <option value="Verkiezingsuitslagen + peilingen">Verkiezingsuitslagen + peilingen</option>
+      <option value="Verkiezingsuitslagen">Verkiezingsuitslagen</option>
+      <option value="Peilingen">Peilingen</option>
+    </select>
     <canvas id="lijnChart" width="500" height="300"></canvas>
   </div>
 

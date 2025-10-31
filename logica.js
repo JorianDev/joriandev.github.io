@@ -121,7 +121,7 @@ let vergelijkingChart = null;
 
 function tekenVergelijkingChart() {
   const gekozen = datasetSelect.value;
-  const huidige = zetelData.tk2023.data;
+  const huidige = zetelData.tk2025.data;
 
   let peiling, meta;
 
@@ -132,9 +132,6 @@ function tekenVergelijkingChart() {
     peiling = zetelData[gekozen].data;
     meta = zetelData[gekozen].meta;
   }
-
-  //const partijenNamen = huidige.map(p => p.naam);
-  //const kleuren = huidige.map(p => p.kleur);
 
   const partijenNamen = peiling.map(p => p.naam);
   const kleuren = peiling.map(p => p.kleur);
@@ -258,13 +255,21 @@ let lijnChart = null;
 function tekenLijnGrafiek() {
   const ctx = document.getElementById("lijnChart");
   const partijSelect = document.getElementById("partijSelect");
+  const zichtbaarheidValue = document.getElementById("selectZichtbaarheid").value;
   const gekozen = partijSelect.value;
+  let datasetsNamen = null;
 
   if (!gekozen) return;
 
-  //Tijdlijn
-  // const datasetsNamen = Object.keys(zetelData).filter(k => zetelData[k].meta && zetelData[k].meta.type === "Peiling");
-  const datasetsNamen = Object.keys(zetelData).filter(k => zetelData[k].meta && zetelData[k].meta.type !== "Eigen verdeling");
+  if (zichtbaarheidValue == "Verkiezingsuitslagen + peilingen") {
+    datasetsNamen = Object.keys(zetelData).filter(k => zetelData[k].meta && zetelData[k].meta.type !== "Eigen verdeling");
+  } else if (zichtbaarheidValue == "Verkiezingsuitslagen") {
+    datasetsNamen = Object.keys(zetelData).filter(k => zetelData[k].meta && zetelData[k].meta.type === "Verkiezingsuitslag");
+  } else {
+    datasetsNamen = Object.keys(zetelData).filter(k => zetelData[k].meta && zetelData[k].meta.type === "Peiling");
+  }
+
+  // const datasetsNamen = Object.keys(zetelData).filter(k => zetelData[k].meta && zetelData[k].meta.type !== "Eigen verdeling");
 
   const combined = datasetsNamen.map(k => ({
     datum: zetelData[k].meta.datum,
@@ -330,5 +335,13 @@ function vulPartijSelect() {
   partijSelect.addEventListener("change", tekenLijnGrafiek);
 }
 
+function vulSelectZichtbaarheid() {
+  const selectZichtbaarheid = document.getElementById("selectZichtbaarheid");
+
+  selectZichtbaarheid.value = "Verkiezingsuitslagen + peilingen";
+  selectZichtbaarheid.addEventListener("change", tekenLijnGrafiek);
+}
+
 vulPartijSelect();
-tekenLijnGrafiek()
+vulSelectZichtbaarheid();
+tekenLijnGrafiek();

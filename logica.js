@@ -161,7 +161,7 @@ function tekenVergelijkingChart() {
       labels: partijenNamen,
       datasets: [
         {
-          label: 'Uitslag TK 2023',
+          label: 'Uitslag TK 2025',
           data: huidigeZetels,
           backgroundColor: kleuren,
         },
@@ -180,7 +180,7 @@ function tekenVergelijkingChart() {
         legend: { position: 'top' },
         title: {
           display: true,
-          text: `Vergelijking tussen TK 23 en ${titelTekst}`,
+          text: `Vergelijking tussen TK 25 en ${titelTekst}`,
         }
       },
       scales: {

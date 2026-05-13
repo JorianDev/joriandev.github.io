@@ -23,9 +23,18 @@ main {
   padding: 2rem;
 }
 
-#ChoosePage {
+/* #ChoosePage {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
+} */
+
+#ChoosePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   margin-top: 20px;
 }
 
@@ -226,4 +235,50 @@ tr:first-child th {
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+
+/* KLIMAAT PAGINA */
+.klimaatUpdate {
+  background: #eaeaea;
+  border-color: rgba(255,255,255,0.10);
+
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem;
+}
+
+.updateTitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a1a18;
+  margin-bottom: 8px;
+}
+
+.updateBody {
+  color: #5a5a58;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.updateLinks {
+  display:flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top:0.75rem;
+  border-top: 0.5px solid rgba(0,0,0,0.10);
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: #185fa5;
+  text-decoration: none;
+}
+
+.link:hover{
+  text-decoration: underline;
 }

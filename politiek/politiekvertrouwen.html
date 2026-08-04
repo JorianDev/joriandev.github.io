@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vertrouwen Politiek - JorianDev</title>
+  <link rel="stylesheet" href="../styling/style.css">
+  <link rel="icon" type="image/x-icon" href="../logo-website-github.png">
+
+  <script src="../data/vertrouwendata.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>Vertrouwen Politiek</h1>
+  </header>
+
+  <main>
+    <button id="TerugBtn">
+      <a href="../politiek/politics.html">Terug</a>
+    </button>
+    <p>Vertrouwen in politieke instituten. Data van het Centraal Bureau voor de Statistiek (CBS).</p>
+
+    <section class="chart-wrapper" style="height: 600px; max-height: 80vh;">
+      <canvas id="vertrouwenChart" style="width: 100%; height: 100%; display: block;"></canvas>
+    </section>
+  </main>
+
+  <script defer>
+    const categorieData = [
+      { key: "gemeenteraad", label: "Gemeenteraad", color: "#4e79a7" },
+      { key: "europeseUnie", label: "Europese Unie", color: "#f28e2b" },
+      { key: "ambtenaren", label: "Ambtenaren", color: "#e15759" },
+      { key: "tweedeKamer", label: "Tweede Kamer", color: "#76b7b2" },
+      { key: "politici", label: "Politici", color: "#59a14f" },
+    ];
+
+    function buildChartData() {
+      return categorieData.map(category => ({
+        label: category.label,
+        data: politiekVertrouwenData.data.map(item => item[category.key]),
+        borderColor: category.color,
+        backgroundColor: category.color + '33',
+        tension: 0.25,
+        spanGaps: true,
+        pointRadius: 4,
+        pointHoverRadius: 7,
+      }));
+    }
+
+    function updateChart(chart) {
+      chart.data.datasets = buildChartData();
+      chart.update();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const ctx = document.getElementById('vertrouwenChart').getContext('2d');
+      const labels = politiekVertrouwenData.data.map(item => item.date);
+      const config = {
+        type: 'line',
+        data: {
+          labels,
+          datasets: buildChartData(),
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'Politiek vertrouwen per instituut',
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              title: {
+                display: true,
+                text: 'Vertrouwen (% van 15-plussers)',
+              },
+            },
+            x: {
+              title: {
+                display: true,
+                text: 'Jaar',
+              },
+            },
+          },
+        },
+      };
+
+      const vertrouwenChart = new Chart(ctx, config);
+    });
+  </script>
+</body>

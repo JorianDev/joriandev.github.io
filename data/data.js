@@ -106,6 +106,32 @@ const zetelData = {
         ]
     },
 
+    peilingMDH_Aug1: {
+        meta: {
+            bron: "Maurice De Hond",
+            datum: "2026-08-01",
+            type: "Peiling"
+        },
+
+        data: [
+            { naam: "PRO", zetels: 23, kleur: "#ff0000"},
+            { naam: "D66", zetels: 18, kleur: "#00ae41"},
+            { naam: "JA21", zetels: 18, kleur: "#242b57"},
+            { naam: "FVD", zetels: 18, kleur: "#84171a"},
+            { naam: "PVV", zetels: 18, kleur: "#1E90FF"},
+            { naam: "VVD", zetels: 16, kleur: "#ff6400"},
+            { naam: "CDA", zetels: 13, kleur: "#2cc84d"},
+            { naam: "PvdDieren", zetels: 4, kleur: "#00621e"},
+            { naam: "50PLUS", zetels: 4, kleur: "#721fc0ff"},
+            { naam: "SP", zetels: 4, kleur: "#ec1b23"},
+            { naam: "SGP", zetels: 3, kleur: "#e95d0f"},
+            { naam: "DENK", zetels: 3, kleur: "#00b7b3"},
+            { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8"},
+            { naam: "Volt", zetels: 3, kleur: "#502378"},
+            { naam: "BBB", zetels: 1, kleur: "#93c01f"},
+        ]
+    },
+
     peilingMDH_Apr18: {
         meta: {
             bron: "Maurice De Hond",

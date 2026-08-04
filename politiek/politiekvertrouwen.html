@@ -20,10 +20,29 @@
     <button id="TerugBtn">
       <a href="../politiek/politics.html">Terug</a>
     </button>
-    <p>Vertrouwen in politieke instituten. Data van het Centraal Bureau voor de Statistiek (CBS).</p>
+    <p>Vertrouwen in politieke instituten. Data van het Centraal Bureau voor de Statistiek (<a href="https://www.cbs.nl/nl-nl/longread/statistische-trends/2026/vertrouwen-in-de-politiek-2016-2025/3-resultaten">CBS</a>).</p>
 
     <section class="chart-wrapper" style="height: 600px; max-height: 80vh;">
       <canvas id="vertrouwenChart" style="width: 100%; height: 100%; display: block;"></canvas>
+    </section>
+
+    <section class="data-table-section">
+      <h2>Onderliggende data</h2>
+      <div class="table-container">
+        <table id="vertrouwenDataTable">
+          <thead>
+            <tr>
+              <th>Jaar</th>
+              <th>Gemeenteraad</th>
+              <th>Europese Unie</th>
+              <th>Ambtenaren</th>
+              <th>Tweede Kamer</th>
+              <th>Politici</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </section>
   </main>
 
@@ -52,6 +71,24 @@
     function updateChart(chart) {
       chart.data.datasets = buildChartData();
       chart.update();
+    }
+
+    function renderDataTable() {
+      const tbody = document.querySelector('#vertrouwenDataTable tbody');
+      tbody.innerHTML = '';
+
+      politiekVertrouwenData.data.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${item.date}</td>
+          <td>${item.gemeenteraad !== null ? item.gemeenteraad : ''}</td>
+          <td>${item.europeseUnie !== null ? item.europeseUnie : ''}</td>
+          <td>${item.ambtenaren !== null ? item.ambtenaren : ''}</td>
+          <td>${item.tweedeKamer !== null ? item.tweedeKamer : ''}</td>
+          <td>${item.politici !== null ? item.politici : ''}</td>
+        `;
+        tbody.appendChild(row);
+      });
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -95,6 +132,7 @@
       };
 
       const vertrouwenChart = new Chart(ctx, config);
+      renderDataTable();
     });
   </script>
 </body>

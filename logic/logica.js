@@ -282,7 +282,7 @@ function tekenLijnGrafiek() {
 
   const labels = combined.map(d => d.datum);
   const zetelwaarden = combined.map(d => d.waarde);
-
+  const hoogsteWaarde = Math.max(...zetelwaarden, 0);
 
 
   if (lijnChart) lijnChart.destroy();
@@ -313,7 +313,7 @@ function tekenLijnGrafiek() {
       scales: {
         y: {
           beginAtZero: true,
-          max: 55,
+          max: hoogsteWaarde + 5,
         },
       },
     },

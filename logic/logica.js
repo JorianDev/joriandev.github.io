@@ -5,6 +5,16 @@ const statusLabel = document.getElementById("statusLabel");
 const datasetSelect = document.getElementById("zetelDataset");
 const eigenVerdelingSelectie = document.getElementById("eigenVerdelingSelectie");
 
+let eigenPartijen = [];
+let eigenverdelingAangepast = false;
+
+function getEigenPartijen() {
+  if (!eigenverdelingAangepast || eigenPartijen.length === 0) {
+    eigenPartijen = zetelData[kamerConfig.basisDataset].data.map(p => ({ ...p }));
+  }
+  return eigenPartijen;
+}
+
 function laadPartijen() {
   container.innerHTML = "";
   const bewerkContainer = document.getElementById("bewerk-container");
@@ -13,8 +23,9 @@ function laadPartijen() {
   gekozenPartijen = [];
 
   const gekozenDataset = datasetSelect.value;
+
   const data = gekozenDataset === "eigenVerdeling"
-    ? partijen
+    ? getEigenPartijen()
     : zetelData[gekozenDataset].data;
 
   data.forEach(partij => {
@@ -34,6 +45,14 @@ function laadPartijen() {
     `;
 
     bewerkContainer.appendChild(wrapper);
+    wrapper.querySelector("input").addEventListener("input", e => {
+      if (datasetSelect.value !== "eigenVerdeling") return;
+      partij.zetels = parseInt(e.target.value) || 0;
+      eigenverdelingAangepast = true;
+      div.textContent = `${partij.naam} (${partij.zetels})`;
+      updateZetels();
+      tekenVergelijkingChart();
+    })
   });
 
   if (datasetSelect.value === "eigenVerdeling") {
@@ -126,7 +145,7 @@ function tekenVergelijkingChart() {
   let peiling, meta;
 
   if (gekozen === "eigenVerdeling") {
-    peiling = partijen;
+    peiling = getEigenPartijen();
     meta = {bron: "Eigen verdeling", datum: "Onbekend", type: "Eigen"};
   } else {
     peiling = zetelData[gekozen].data;

@@ -1,5 +1,5 @@
 // Variables (global)
-let partijen = zetelData[kamerConfig.basisDataset].data.map(p => ({ ...p }));
+// let partijen = zetelData[kamerConfig.basisDataset].data.map(p => ({ ...p }));
 let gekozenPartijen = [];
 
 const meerderheid = kamerConfig.meerderheid;
@@ -8,7 +8,7 @@ const maxAantalZetels = kamerConfig.zetelAantal;
 document.addEventListener("DOMContentLoaded", () => {
   const datasetSelect = document.getElementById("zetelDataset");
   const resetBtn = document.getElementById("resetBtn");
-  const eigenVerdelingSelectie = document.getElementById("eigenVerdelingSelectie");
+  // const eigenVerdelingSelectie = document.getElementById("eigenVerdelingSelectie");
   const opslaanBtn = document.getElementById("opslaanZetels");
   const gebruikAangepasteBtn = document.getElementById("gebruikAangepasteVerdeling");
 
@@ -18,7 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (opgeslagenVerdeling) {
     try {
       const verdelingArray = JSON.parse(opgeslagenVerdeling);
-      zetelData.eigenVerdeling.data.forEach(partij => {
+      eigenPartijen = zetelData[kamerConfig.basisDataset].data.map(p => ({ ...p }));
+      eigenPartijen.forEach(partij => {
         const opgeslagenPartij = verdelingArray.find(p => p.naam === partij.naam);
         if (opgeslagenPartij) {
           partij.zetels = opgeslagenPartij.zetels;
@@ -31,22 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialisatie
   laadPartijen();
-  tekenVergelijkingChart();
 
   // Dataset selectie
-  datasetSelect.addEventListener("change", () => {
-    const gekozen = datasetSelect.value;
-    partijen = zetelData[gekozen].data.map(p => ({ ...p }));
-    laadPartijen();
-    tekenVergelijkingChart();
-
-    // Toon bewerk-interface bij eigen verdeling
-    if (gekozen === "eigenVerdeling") {
-      eigenVerdelingSelectie.style.display = "block";
-    } else {
-      eigenVerdelingSelectie.style.display = "none";
-    }
-  });
+  datasetSelect.addEventListener("change", laadPartijen);
 
   // Reset-knop
   resetBtn.addEventListener("click", () => {
@@ -79,8 +67,10 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    eigenverdelingAangepast = true;
+    const eigen = getEigenPartijen();
     nieuweVerdeling.forEach(nieuw => {
-      const partij = partijen.find(p => p.naam === nieuw.naam);
+      const partij = eigen.find(p => p.naam === nieuw.naam);
       if (partij) partij.zetels = nieuw.zetels;
     });
 
@@ -88,6 +78,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     gekozenPartijen = [];
     laadPartijen();
-    tekenVergelijkingChart();
   });
 });

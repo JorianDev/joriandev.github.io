@@ -86,7 +86,7 @@ function tekenKamer() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     let huidigeHoek = Math.PI;
-    const hoekPerZetel = Math.PI / kamerConfig.zetelAantal; // max 150 zetels (ruimte verdeling)
+    const hoekPerZetel = Math.PI / kamerConfig.zetelAantal;
 
     // Teken geselecteerde partijen in volgorde van klik
     gekozenPartijen.forEach(partij => {
@@ -146,6 +146,12 @@ function tekenVergelijkingChart() {
     return partij ? partij.zetels : 0;
   });
 
+  const grootsteZetelAantal = Math.max(
+    ...huidige.map(partij => partij.zetels),
+    ...peiling.map(partij => partij.zetels),
+    0
+  );
+
   const ctx = document.getElementById("vergelijkingChart").getContext("2d");
 
   if (vergelijkingChart) vergelijkingChart.destroy(); // voorkom dubbele charts
@@ -161,7 +167,7 @@ function tekenVergelijkingChart() {
       labels: partijenNamen,
       datasets: [
         {
-          label: 'Uitslag TK 2025',
+          label: 'Uitslag laatste verkiezing',
           data: huidigeZetels,
           backgroundColor: kleuren,
         },
@@ -178,13 +184,13 @@ function tekenVergelijkingChart() {
         legend: { position: 'top' },
         title: {
           display: true,
-          text: `Vergelijking tussen TK 25 en ${titelTekst}`,
+          text: `Vergelijking tussen laatste verkiezing en ${titelTekst}`,
         }
       },
       scales: {
         y: {
           beginAtZero: true,
-          max: 50
+          max: grootsteZetelAantal + 5
         }
       }
     }
@@ -267,8 +273,6 @@ function tekenLijnGrafiek() {
     datasetsNamen = Object.keys(zetelData).filter(k => zetelData[k].meta && zetelData[k].meta.type === "Peiling");
   }
 
-  // const datasetsNamen = Object.keys(zetelData).filter(k => zetelData[k].meta && zetelData[k].meta.type !== "Eigen verdeling");
-
   const combined = datasetsNamen.map(k => ({
     datum: zetelData[k].meta.datum,
     waarde: zetelData[k].data.find(p => p.naam === gekozen)?.zetels || 0
@@ -321,7 +325,7 @@ function vulPartijSelect() {
   partijSelect.innerHTML = "";
 
   // Gebruik partijen uit TK2023 als referentie
-  zetelData.tk2023.data.forEach(p => {
+  zetelData[kamerConfig.basisDataset].data.forEach(p => {
     const opt = document.createElement("option");
     opt.value = p.naam;
     opt.textContent = p.naam;

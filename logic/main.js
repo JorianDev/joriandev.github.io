@@ -1,9 +1,9 @@
 // Variables (global)
-let partijen = zetelData.tk2023;
+let partijen = zetelData[kamerConfig.basisDataset].data.map(p => ({ ...p }));
 let gekozenPartijen = [];
 
-const meerderheid = 76;
-const maxAantalZetels = 150;
+const meerderheid = kamerConfig.meerderheid;
+const maxAantalZetels = kamerConfig.zetelAantal;
 
 document.addEventListener("DOMContentLoaded", () => {
   const datasetSelect = document.getElementById("zetelDataset");
@@ -74,8 +74,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    if (totaal !== 150) {
-      alert(`Het totaal aantal zetels moet 150 zijn. Je hebt nu ${totaal} zetels.`);
+    if (totaal !== kamerConfig.zetelAantal) {
+      alert(`Het totaal aantal zetels moet ${kamerConfig.zetelAantal} zijn. Je hebt nu ${totaal} zetels.`);
       return;
     }
 

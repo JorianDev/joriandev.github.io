@@ -86,7 +86,7 @@ function tekenKamer() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     let huidigeHoek = Math.PI;
-    const hoekPerZetel = Math.PI / 150; // max 150 zetels (ruimte verdeling)
+    const hoekPerZetel = Math.PI / kamerConfig.zetelAantal; // max 150 zetels (ruimte verdeling)
 
     // Teken geselecteerde partijen in volgorde van klik
     gekozenPartijen.forEach(partij => {
@@ -121,7 +121,7 @@ let vergelijkingChart = null;
 
 function tekenVergelijkingChart() {
   const gekozen = datasetSelect.value;
-  const huidige = zetelData.tk2025.data;
+  const huidige = zetelData[kamerConfig.basisDataset].data;
 
   let peiling, meta;
 
@@ -166,8 +166,6 @@ function tekenVergelijkingChart() {
           backgroundColor: kleuren,
         },
         {
-          //label: gekozen === "eigenVerdeling" ? 'Eigen verdeling' : `Peiling (${gekozen})`,
-          //label: `Peiling (${gekozen})`,
           label: titelTekst,
           data: peilingZetels,
           backgroundColor: kleuren.map(k => k + "66"), // transparanter

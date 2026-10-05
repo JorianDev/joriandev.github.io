@@ -366,3 +366,32 @@ function vulSelectZichtbaarheid() {
 vulPartijSelect();
 vulSelectZichtbaarheid();
 tekenLijnGrafiek();
+
+// Logica eerstkamer
+function maakTabel(containerId, rijen, kolommen) {
+  const container = document.getElementById(containerId);
+
+  const kop = kolommen.map(k => `<th>${k.titel}</th>`).join("");
+  const body = rijen.map(rij => `<tr>${kolommen.map(k => `<td data-label="${k.titel}">${rij[k.key] ?? "-"}</td>`).join("")}</tr>`).join("");
+
+  container.innerHTML = `
+    <table class="shame-tabel">
+      <thead><tr>${kop}</tr></thead>
+      <tbody>${body}</tbody>
+    </table>`;
+}
+
+  maakTabel("hoppersTabel", hoppers, [
+    { key: "naam",  titel: "Naam" },
+    { key: "van",   titel: "Van" },
+    { key: "naar",  titel: "Naar" },
+    { key: "datum", titel: "Datum" },
+    { key: "reden", titel: "Reden" }, 
+  ]);
+
+maakTabel("vertrokkenTabel", vertrokken, [
+    { key: "naam",  titel: "Naam" },
+    { key: "van",   titel: "Partij" },
+    { key: "datum", titel: "Datum" },
+    { key: "reden", titel: "Reden" },
+  ]);

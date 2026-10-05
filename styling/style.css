@@ -23,12 +23,6 @@ main {
   padding: 2rem;
 }
 
-/* #ChoosePage {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-} */
-
 #ChoosePage {
   display: flex;
   flex-direction: column;
@@ -281,4 +275,27 @@ tr:nth-child(even) {
 
 .link:hover{
   text-decoration: underline;
+}
+
+.shame-tabel {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+.shame-tabel th, .shame-tabel td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  vertical-align: top;
+}
+.shame-tabel th {background-color: #f3f3f3}
+.shame-tabel tbody tr:hover {background:#fafafa;}
+@media (max-width: 700px) {
+  .shame-tabel thead {display: none;}
+  .shame-tabel tr { display: block; margin-bottom: 1rem; border: 1px solid #ddd; }
+  .shame-tabel td { display: block; border: none; }
+  .shame-tabel td::before {
+    content: attr(data-label) ": ";
+    font-weight: bold;
+  }
 }

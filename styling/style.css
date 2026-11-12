@@ -38,7 +38,7 @@ main {
 }
 
 button {
-  color: white;
+  color: black;
   background-color: #007bff;
   border-radius: 5px;
   border: none;
@@ -142,6 +142,49 @@ a:link, a:visited, a:active {
   width: 100%;
   max-width: 500px;
   height: auto;
+}
+
+#beideKamersOptions {
+  margin-bottom: 20px;
+}
+
+#beideKamersOptions label {
+  margin-right: 8px;
+}
+
+#beideKamersPartijen {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px auto;
+  max-width: 1100px;
+}
+
+#beideKamersPartijen .partij {
+  flex: 1 1 180px;
+  max-width: 240px;
+}
+
+#beideKamersOverzicht {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+.kamer-overzicht {
+  flex: 1 1 350px;
+  min-width: 0;
+  text-align: center;
+}
+
+.kamer-overzicht canvas {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin: 0 auto;
 }
 
 .opslaanZetels {

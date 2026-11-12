@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beide Kamers - JorianDev</title>
+  <link rel="stylesheet" href="../styling/style.css">
+  <link rel="icon" type="image/x-icon" href="../logo-website-github.png">
+  <script src="../data/beide-kamers.js" defer></script>
+  <script src="../logic/beide-kamers.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>Tweede en Eerste Kamer</h1>
+  </header>
+
+  <button id="TerugBtn" type="button">
+    <a href="../index.html">Terug</a>
+  </button>
+
+  <main>
+    <div id="beideKamersOptions">
+      <label for="beideKamersDataset">Kies de zetelverdeling</label>
+      <select id="beideKamersDataset">
+        <option value="currentSituation">Huidige situatie</option>
+        <option value="electionResults">Officiële verkiezingsuitslagen (TK 2025 / EK 2023)</option>
+      </select>
+    </div>
+
+    <div id="beideKamersPartijen" aria-label="Kies partijen"></div>
+
+    <div id="beideKamersOverzicht">
+      <section class="kamer-overzicht">
+        <h2>Tweede Kamer</h2>
+        <p id="tweedeKamerTotaal"></p>
+        <canvas id="tweedeKamerCanvas" width="500" height="250" aria-label="Zetelverdeling Tweede Kamer"></canvas>
+      </section>
+      <section class="kamer-overzicht">
+        <h2>Eerste Kamer</h2>
+        <p id="eersteKamerTotaal"></p>
+        <canvas id="eersteKamerCanvas" width="500" height="250" aria-label="Zetelverdeling Eerste Kamer"></canvas>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 JorianDev</p>
+  </footer>
+</body>
+</html>

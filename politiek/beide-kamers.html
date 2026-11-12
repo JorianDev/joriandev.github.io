@@ -26,6 +26,7 @@
         <option value="currentSituation">Huidige situatie</option>
         <option value="electionResults">Officiële verkiezingsuitslagen (TK 2025 / EK 2023)</option>
       </select>
+      <button id="resetBeideKamers" type="button">Wis selectie</button>
     </div>
 
     <div id="beideKamersPartijen" aria-label="Kies partijen"></div>
@@ -33,12 +34,16 @@
     <div id="beideKamersOverzicht">
       <section class="kamer-overzicht">
         <h2>Tweede Kamer</h2>
+        <p id="tweedeKamerFracties"></p>
         <p id="tweedeKamerTotaal"></p>
+        <p id="tweedeKamerMeerderheid" class="kamer-meerderheid geen-meerderheid" role="status"></p>
         <canvas id="tweedeKamerCanvas" width="500" height="250" aria-label="Zetelverdeling Tweede Kamer"></canvas>
       </section>
       <section class="kamer-overzicht">
         <h2>Eerste Kamer</h2>
+        <p id="eersteKamerFracties"></p>
         <p id="eersteKamerTotaal"></p>
+        <p id="eersteKamerMeerderheid" class="kamer-meerderheid geen-meerderheid" role="status"></p>
         <canvas id="eersteKamerCanvas" width="500" height="250" aria-label="Zetelverdeling Eerste Kamer"></canvas>
       </section>
     </div>

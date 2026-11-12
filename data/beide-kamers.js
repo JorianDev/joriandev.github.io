@@ -1,21 +1,23 @@
 const beideKamersData = {
   currentSituation: {
     tweedeKamer: [
-      { naam: "PVV", zetels: 26, kleur: "#1E90FF" },
       { naam: "D66", zetels: 26, kleur: "#00ae41" },
-      { naam: "GroenLinks/PvdA", zetels: 20, kleur: "#ff0000" },
       { naam: "VVD", zetels: 22, kleur: "#ff6400" },
+      { naam: "GroenLinks/PvdA", zetels: 20, kleur: "#ff0000" },
+      { naam: "PVV", zetels: 19, kleur: "#1E90FF" },
       { naam: "CDA", zetels: 18, kleur: "#2cc84d" },
       { naam: "JA21", zetels: 9, kleur: "#242b57" },
       { naam: "FVD", zetels: 7, kleur: "#84171a" },
-      { naam: "BBB", zetels: 4, kleur: "#93c01f" },
-      { naam: "SP", zetels: 3, kleur: "#ec1b23" },
+      { naam: "Groep-Markuszower", zetels: 7, kleur: "#721fc0ff" },
+      { naam: "BBB", zetels: 3, kleur: "#93c01f" },
+      { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8" },
+      { naam: "DENK", zetels: 3, kleur: "#00b7b3" },
       { naam: "PvdDieren", zetels: 3, kleur: "#00621e" },
       { naam: "SGP", zetels: 3, kleur: "#e95d0f" },
-      { naam: "DENK", zetels: 3, kleur: "#00b7b3" },
-      { naam: "ChristenUnie", zetels: 3, kleur: "#00a5e8" },
+      { naam: "SP", zetels: 3, kleur: "#ec1b23" },
       { naam: "50PLUS", zetels: 2, kleur: "#721fc0ff" },
-      { naam: "Volt", zetels: 1, kleur: "#502378" }
+      { naam: "Volt", zetels: 1, kleur: "#502378" },
+      { naam: "Groep-Keijzer", zetels: 1, kleur: "#00b7b3" }
     ],
     eersteKamer: [
       { naam: "GroenLinks/PvdA", zetels: 14, kleur: "#ff0000" },

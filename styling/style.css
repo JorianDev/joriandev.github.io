@@ -152,6 +152,10 @@ a:link, a:visited, a:active {
   margin-right: 8px;
 }
 
+#resetBeideKamers {
+  margin-left: 8px;
+}
+
 #beideKamersPartijen {
   display: flex;
   flex-wrap: wrap;
@@ -177,6 +181,25 @@ a:link, a:visited, a:active {
   flex: 1 1 350px;
   min-width: 0;
   text-align: center;
+}
+
+.kamer-overzicht p {
+  margin: 8px 0;
+}
+
+.kamer-overzicht .kamer-meerderheid {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.kamer-overzicht .kamer-meerderheid.meerderheid {
+  background-color: #e6f4ea;
+}
+
+.kamer-overzicht .kamer-meerderheid.geen-meerderheid {
+  background-color: #fde8e7;
 }
 
 .kamer-overzicht canvas {

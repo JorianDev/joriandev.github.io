@@ -15,6 +15,8 @@ function tekenKamer(canvasId, outputId, partijen, kamer) {
   const aantal = partijen
     .filter(partij => geselecteerdePartijen.has(partij.naam))
     .reduce((som, partij) => som + partij.zetels, 0);
+  const fractiesElement = document.getElementById(`${kamer}Fracties`);
+  const meerderheidElement = document.getElementById(`${kamer}Meerderheid`);
   const canvas = document.getElementById(canvasId);
   const context = canvas.getContext("2d");
   const middenX = canvas.width / 2;
@@ -22,8 +24,14 @@ function tekenKamer(canvasId, outputId, partijen, kamer) {
   const straal = canvas.height;
   let huidigeHoek = Math.PI;
 
+  fractiesElement.textContent = `Fracties: ${partijen.filter(partij => partij.zetels > 0).length}`;
   document.getElementById(outputId).textContent =
-    `Geselecteerd: ${aantal} / ${totaal} zetels · meerderheid vanaf ${meerderheid}`;
+    `Geselecteerd: ${aantal} van ${totaal} zetels · meerderheid vanaf ${meerderheid}`;
+  meerderheidElement.textContent = aantal >= meerderheid
+    ? "Meerderheid behaald"
+    : `Nog ${meerderheid - aantal} zetels nodig voor een meerderheid`;
+  meerderheidElement.classList.toggle("meerderheid", aantal >= meerderheid);
+  meerderheidElement.classList.toggle("geen-meerderheid", aantal < meerderheid);
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   partijen.forEach(partij => {
@@ -48,6 +56,15 @@ function tekenKamer(canvasId, outputId, partijen, kamer) {
     context.fillStyle = "#ddd";
     context.fill();
   }
+}
+
+function wisSelectie() {
+  geselecteerdePartijen.clear();
+  partijenContainer.querySelectorAll(".partij").forEach(knop => {
+    knop.classList.remove("selected");
+    knop.setAttribute("aria-pressed", "false");
+  });
+  updateKamers(beideKamersData[datasetKeuze.value]);
 }
 
 function updateKamers(partijen) {
@@ -89,4 +106,5 @@ function laadVerdeling() {
 }
 
 datasetKeuze.addEventListener("change", laadVerdeling);
+document.getElementById("resetBeideKamers").addEventListener("click", wisSelectie);
 laadVerdeling();

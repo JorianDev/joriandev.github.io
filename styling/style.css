@@ -108,6 +108,7 @@ a:link, a:visited, a:active {
   align-items: center;
   gap: 20px;
   box-sizing: border-box;
+  min-width: 0;
 }
 
 #zetels-display {
@@ -132,6 +133,15 @@ a:link, a:visited, a:active {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+}
+
+#kamerCanvas {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
 }
 
 .opslaanZetels {
